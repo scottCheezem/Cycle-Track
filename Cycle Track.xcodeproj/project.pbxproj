@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */; };
 		CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F12151EACC60023A8EC /* UIKit.framework */; };
 		CED94F15151EACC60023A8EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F14151EACC60023A8EC /* Foundation.framework */; };
 		CED94F17151EACC60023A8EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F16151EACC60023A8EC /* CoreGraphics.framework */; };
@@ -194,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */,
 				CED94F1F151EACC60023A8EC /* main.m in Sources */,
 				CED94F23151EACC60023A8EC /* AppDelegate.m in Sources */,
 				CED94F29151EACC60023A8EC /* FirstViewController.m in Sources */,
