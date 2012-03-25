@@ -25,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
+		CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
 		CED94F0E151EACC60023A8EC /* Cycle Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cycle Track.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED94F12151EACC60023A8EC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CED94F14151EACC60023A8EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,8 +69,6 @@
 		CED94F03151EACC60023A8EC = {
 			isa = PBXGroup;
 			children = (
-				CED94F3C151EADC20023A8EC /* CoreLocation.framework */,
-				CED94F3A151EADBB0023A8EC /* MapKit.framework */,
 				CED94F18151EACC60023A8EC /* Cycle Track */,
 				CED94F11151EACC60023A8EC /* Frameworks */,
 				CED94F0F151EACC60023A8EC /* Products */,
@@ -86,6 +86,8 @@
 		CED94F11151EACC60023A8EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CED94F3C151EADC20023A8EC /* CoreLocation.framework */,
+				CED94F3A151EADBB0023A8EC /* MapKit.framework */,
 				CED94F12151EACC60023A8EC /* UIKit.framework */,
 				CED94F14151EACC60023A8EC /* Foundation.framework */,
 				CED94F16151EACC60023A8EC /* CoreGraphics.framework */,
@@ -96,6 +98,8 @@
 		CED94F18151EACC60023A8EC /* Cycle Track */ = {
 			isa = PBXGroup;
 			children = (
+				CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */,
+				CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */,
 				CED94F21151EACC60023A8EC /* AppDelegate.h */,
 				CED94F22151EACC60023A8EC /* AppDelegate.m */,
 				CED94F24151EACC60023A8EC /* MainStoryboard.storyboard */,
@@ -305,6 +309,7 @@
 				CED94F39151EACC60023A8EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

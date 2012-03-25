@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/Mapkit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "WayPoint.h"
 
 @interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *cycleMap;
@@ -16,6 +17,12 @@
 
 @property(nonatomic) BOOL tracking;
 
+@property(nonatomic, weak)MKPolyline *routeLine;
+@property(nonatomic, weak)MKPolylineView *routeLineView;
+
+@property(nonatomic, retain)NSMutableArray *currentPathWayPoints;
+
+@property(nonatomic, retain)CLLocationManager *locationManager;
 
 
 @end

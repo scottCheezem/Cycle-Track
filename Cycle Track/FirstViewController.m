@@ -16,24 +16,26 @@
 @synthesize cycleMap;
 @synthesize trackingLabel;
 @synthesize tracking;
-
+@synthesize routeLine, routeLineView, currentPathWayPoints;
+@synthesize locationManager;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     cycleMap.delegate = self;
+    locationManager.delegate = self;
     
     
     
-    //trackingLabel.text = (tracking) ? @"tracking" : @"";
-    if(tracking){
-        trackingLabel.text = @"trackng";
-    }else{
-        trackingLabel.text = @"";
-    }
     
     
 }
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self trackingToggled];
+}
+
 
 - (void)viewDidUnload
 {
@@ -67,11 +69,40 @@
     
     if(tracking){
         NSLog(@"tracking enabled");
+
+        
+        
     }
     
 }
 
 
+-(void)computePattern{
+    MKMapPoint* pointArr = malloc(sizeof(CLLocationCoordinate2D)*self.currentPathWayPoints.count);
+    
+    
+    for(int idx = 0; idx<=self.currentPathWayPoints.count ; idx++){
+        WayPoint *wp = [self.currentPathWayPoints objectAtIndex:idx];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([wp.lat doubleValue], [wp.lon doubleValue]);
+        MKMapPoint point = MKMapPointForCoordinate(coord);
+        pointArr[idx] = point;
+
+    }
+    
+    self.routeLine = [MKPolyline polylineWithPoints:pointArr count:self.currentPathWayPoints.count];
+    free(pointArr);
+}
+
+-(void)trackingToggled{
+
+    if(tracking){
+        trackingLabel.text = @"trackng";
+    }else{
+        trackingLabel.text = @"";
+    }
+    NSLog(@"tracking is %d", tracking);
+    
+}
 
 
 @end
