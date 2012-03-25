@@ -21,12 +21,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentPathWayPoints = [[NSMutableArray alloc] init ];
 
     cycleMap.delegate = self;
     locationManager.delegate = self;
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     
-    
+    self.tracking = true;
     
     
 }
@@ -69,6 +73,9 @@
     
     if(tracking){
         NSLog(@"tracking enabled");
+        WayPoint *wp = [[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate];
+        [self.currentPathWayPoints addObject:wp];
+        NSLog(@"added a point : %d", self.currentPathWayPoints.count);
 
         
         
@@ -76,8 +83,27 @@
     
 }
 
+-(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay {
+    
+    MKOverlayView* overlayView = nil;
+    
+    //if(overlay == self.routeLine){
+    // if(nil == self.routeLine){
+    self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
+    self.routeLineView.fillColor = [UIColor blueColor];
+    self.routeLineView.strokeColor = [UIColor blueColor];
+    self.routeLineView.lineWidth = 2;
+    
+    //}
+    overlayView = self.routeLineView;
+    //}
+    
+    return overlayView;
+}
 
 -(void)computePattern{
+    
+    
     MKMapPoint* pointArr = malloc(sizeof(CLLocationCoordinate2D)*self.currentPathWayPoints.count);
     
     

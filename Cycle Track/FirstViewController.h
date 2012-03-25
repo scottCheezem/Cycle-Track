@@ -20,9 +20,9 @@
 @property(nonatomic, weak)MKPolyline *routeLine;
 @property(nonatomic, weak)MKPolylineView *routeLineView;
 
-@property(nonatomic, retain)NSMutableArray *currentPathWayPoints;
+@property(nonatomic, strong)NSMutableArray *currentPathWayPoints;
 
-@property(nonatomic, retain)CLLocationManager *locationManager;
+@property(nonatomic, strong)CLLocationManager *locationManager;
 
 
 @end
