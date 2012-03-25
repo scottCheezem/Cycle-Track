@@ -20,6 +20,8 @@
 		CED94F30151EACC60023A8EC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED94F2F151EACC60023A8EC /* SecondViewController.m */; };
 		CED94F32151EACC60023A8EC /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = CED94F31151EACC60023A8EC /* second.png */; };
 		CED94F34151EACC60023A8EC /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CED94F33151EACC60023A8EC /* second@2x.png */; };
+		CED94F3B151EADBB0023A8EC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F3A151EADBB0023A8EC /* MapKit.framework */; };
+		CED94F3D151EADC20023A8EC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F3C151EADC20023A8EC /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,21 +29,23 @@
 		CED94F12151EACC60023A8EC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CED94F14151EACC60023A8EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CED94F16151EACC60023A8EC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CED94F1A151EACC60023A8EC /* Cycle Track-Info.plist */ = {isa = PBXFileReference; path = "Cycle Track-Info.plist"; sourceTree = "<group>"; };
+		CED94F1A151EACC60023A8EC /* Cycle Track-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cycle Track-Info.plist"; sourceTree = "<group>"; };
 		CED94F1C151EACC60023A8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CED94F1E151EACC60023A8EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CED94F20151EACC60023A8EC /* Cycle Track-Prefix.pch */ = {isa = PBXFileReference; path = "Cycle Track-Prefix.pch"; sourceTree = "<group>"; };
-		CED94F21151EACC60023A8EC /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		CED94F20151EACC60023A8EC /* Cycle Track-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cycle Track-Prefix.pch"; sourceTree = "<group>"; };
+		CED94F21151EACC60023A8EC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CED94F22151EACC60023A8EC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CED94F25151EACC60023A8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		CED94F27151EACC60023A8EC /* FirstViewController.h */ = {isa = PBXFileReference; path = FirstViewController.h; sourceTree = "<group>"; };
+		CED94F27151EACC60023A8EC /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		CED94F28151EACC60023A8EC /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		CED94F2A151EACC60023A8EC /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		CED94F2C151EACC60023A8EC /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		CED94F2E151EACC60023A8EC /* SecondViewController.h */ = {isa = PBXFileReference; path = SecondViewController.h; sourceTree = "<group>"; };
+		CED94F2E151EACC60023A8EC /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		CED94F2F151EACC60023A8EC /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		CED94F31151EACC60023A8EC /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		CED94F33151EACC60023A8EC /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		CED94F3A151EADBB0023A8EC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CED94F3C151EADC20023A8EC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED94F3D151EADC20023A8EC /* CoreLocation.framework in Frameworks */,
+				CED94F3B151EADBB0023A8EC /* MapKit.framework in Frameworks */,
 				CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */,
 				CED94F15151EACC60023A8EC /* Foundation.framework in Frameworks */,
 				CED94F17151EACC60023A8EC /* CoreGraphics.framework in Frameworks */,
@@ -61,6 +67,8 @@
 		CED94F03151EACC60023A8EC = {
 			isa = PBXGroup;
 			children = (
+				CED94F3C151EADC20023A8EC /* CoreLocation.framework */,
+				CED94F3A151EADBB0023A8EC /* MapKit.framework */,
 				CED94F18151EACC60023A8EC /* Cycle Track */,
 				CED94F11151EACC60023A8EC /* Frameworks */,
 				CED94F0F151EACC60023A8EC /* Products */,

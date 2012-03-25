@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/Mapkit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>
+@property (weak, nonatomic) IBOutlet MKMapView *cycleMap;
+@property (weak, nonatomic) IBOutlet UILabel *trackingLabel;
+
+@property(nonatomic) BOOL tracking;
+
+
 
 @end
