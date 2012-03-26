@@ -36,7 +36,8 @@
 - (IBAction)toggleTracking:(id)sender {
     NSLog(@"now tracking, going to map");
     FirstViewController *fc = [self.tabBarController.viewControllers objectAtIndex:0];
-    fc.tracking = true;
+    //fc.tracking = true;
+    [fc trackingToggled];
     [[self tabBarController]setSelectedIndex:0];
 
 }

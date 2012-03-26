@@ -28,18 +28,18 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    
-    self.tracking = true;
-    
-    
+    if(self.locationManager.location == nil){
+        NSLog(@"no location");
+    }    
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    //[self trackingToggled];
+}
+-(void)viewDidAppear:(BOOL)animated{
     [self trackingToggled];
 }
-
 
 - (void)viewDidUnload
 {
@@ -73,11 +73,12 @@
     
     if(tracking){
         NSLog(@"tracking enabled");
-        WayPoint *wp = [[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate];
-        [self.currentPathWayPoints addObject:wp];
-        NSLog(@"added a point : %d", self.currentPathWayPoints.count);
-
-        
+        WayPoint *_wp = [[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate];
+        [self.currentPathWayPoints addObject:_wp];
+        NSLog(@"added a point : %d", [self.currentPathWayPoints count]);
+        if(self.currentPathWayPoints.count >= 2){
+            [self computePattern];
+        }
         
     }
     
@@ -87,39 +88,49 @@
     
     MKOverlayView* overlayView = nil;
     
-    //if(overlay == self.routeLine){
-    // if(nil == self.routeLine){
-    self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
-    self.routeLineView.fillColor = [UIColor blueColor];
-    self.routeLineView.strokeColor = [UIColor blueColor];
-    self.routeLineView.lineWidth = 2;
-    
-    //}
-    overlayView = self.routeLineView;
-    //}
+    if(overlay == self.routeLine){
+         if(nil == self.routeLine){
+             NSLog(@"about to init with poly line..");
+            self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
+            self.routeLineView.fillColor = [UIColor blueColor];
+            self.routeLineView.strokeColor = [UIColor blueColor];
+            self.routeLineView.lineWidth = 2;
+        
+        }
+        overlayView = self.routeLineView;
+    }
     
     return overlayView;
 }
 
 -(void)computePattern{
-    
+    NSLog(@"processing %d points", self.currentPathWayPoints.count);
+    //[self.cycleMap removeOverlay:self.routeLine];
     
     MKMapPoint* pointArr = malloc(sizeof(CLLocationCoordinate2D)*self.currentPathWayPoints.count);
     
-    
-    for(int idx = 0; idx<=self.currentPathWayPoints.count ; idx++){
-        WayPoint *wp = [self.currentPathWayPoints objectAtIndex:idx];
+    int idx = 0;
+    for(WayPoint *wp in self.currentPathWayPoints){
+        
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([wp.lat doubleValue], [wp.lon doubleValue]);
+        NSLog(@"%d of %d - %f : %f", idx, self.currentPathWayPoints.count, [wp.lat doubleValue], [wp.lon doubleValue]);
         MKMapPoint point = MKMapPointForCoordinate(coord);
+        NSLog(@"%f, %f", point.x, point.y);
         pointArr[idx] = point;
+        idx++;
 
     }
     
-    self.routeLine = [MKPolyline polylineWithPoints:pointArr count:self.currentPathWayPoints.count];
+    self.routeLine = [MKPolyline polylineWithPoints:pointArr count:idx];
     free(pointArr);
+    [self.cycleMap addOverlay:self.routeLine];
 }
 
 -(void)trackingToggled{
+    
+    
+    
+    self.tracking = !self.tracking;
 
     if(tracking){
         trackingLabel.text = @"trackng";
