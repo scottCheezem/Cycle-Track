@@ -6,6 +6,18 @@
 //  Copyright (c) 2012 433 E Tompkins St. All rights reserved.
 //
 
+/*WISH LIST
+ -get the stop start button working...
+ -add button to follow point...some sort of system button?
+ -show start and stop points in a path - add annotations - and figure 
+ -turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
+ -store a record : a copy of the array of points.
+ -show a history table
+ -show current speed in the second view
+ 
+ */
+
+
 #import "FirstViewController.h"
 
 @interface FirstViewController ()
@@ -31,7 +43,7 @@ bool shouldZoom;
 
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    [self.locationManager stopUpdatingLocation];
+    [self.locationManager startUpdatingLocation];
     
     self.routeLine = [[MKPolyline alloc] init];
 
@@ -47,7 +59,7 @@ bool shouldZoom;
     //[self trackingToggled];
 }
 -(void)viewDidAppear:(BOOL)animated{
-    [self trackingToggled];
+    //[self trackingToggled];
 }
 
 - (void)viewDidUnload
@@ -84,12 +96,12 @@ bool shouldZoom;
     }
     
     if(tracking){
-        //NSLog(@"tracking enabled");
-        //WayPoint *_wp = [[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate];
-        //if(_wp != nil){
-            [self.currentPathWayPoints addObject:[[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate]];
-            NSLog(@"added a point : %d", [self.currentPathWayPoints count]);
-        //}
+        
+        
+        [self.currentPathWayPoints addObject:[[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate]];
+        
+        NSLog(@"added a point : %d", [self.currentPathWayPoints count]);
+        
         if(self.currentPathWayPoints.count >= 2){
             
             [self computePattern];
@@ -148,23 +160,20 @@ bool shouldZoom;
     NSLog(@"processing %d points", self.currentPathWayPoints.count);
 
     
-    int initCount = self.currentPathWayPoints.count;
+    //int initCount = self.currentPathWayPoints.count;
     
-    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D)*initCount);
-    //MKMapPoint* pointArr = malloc(sizeof(MKMapPoint)*self.currentPathWayPoints.count);
+    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D)*self.currentPathWayPoints.count);
     
     int idx = 0;
     for(WayPoint *wp in self.currentPathWayPoints){
         
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([wp.lat doubleValue], [wp.lon doubleValue]);
 
-        //MKMapPoint point = MKMapPointForCoordinate(coord);
-
-        //pointArr[idx] = point;
         pointArr[idx] = coord;
         idx++;
 
     }
+    
     /*for(int i = 0; i<idx ; i++){
         NSLog(@"point %d : %f, %f", i, pointArr[i].latitude, pointArr[i].longitude);
     }*/
@@ -175,7 +184,6 @@ bool shouldZoom;
 
     free(pointArr);
     if(self.routeLine != nil){
-        NSLog(@"routeLine is not nil");
         //[self.cycleMap removeOverlay:self.routeLine];
         [self.cycleMap addOverlay:self.routeLine];        
     }
@@ -184,14 +192,14 @@ bool shouldZoom;
 
 -(void)trackingToggled{
     
-    
-    
     self.tracking = !self.tracking;
 
     if(tracking){
         trackingLabel.text = @"trackng";
+        //setStartPoint
     }else{
         trackingLabel.text = @"";
+        //setStopPoint
     }
     NSLog(@"tracking is %d", tracking);
     

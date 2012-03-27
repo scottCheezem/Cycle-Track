@@ -34,9 +34,9 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 - (IBAction)toggleTracking:(id)sender {
-    NSLog(@"now tracking, going to map");
+
     FirstViewController *fc = [self.tabBarController.viewControllers objectAtIndex:0];
-    //fc.tracking = true;
+    NSLog(@"tracking is now %d", fc.tracking);
     [fc trackingToggled];
     [[self tabBarController]setSelectedIndex:0];
 
