@@ -18,6 +18,7 @@
 @synthesize tracking;
 @synthesize routeLine, routeLineView, currentPathWayPoints;
 @synthesize locationManager;
+bool shouldZoom;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,9 +30,9 @@
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    self.routeLine = [[MKPolyline alloc] init];
+    //self.routeLine = [[MKPolyline alloc] init];
 
-    
+    shouldZoom = YES;
     
     if(self.locationManager.location == nil){
         //NSLog(@"no location");
@@ -64,16 +65,19 @@
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     //NSLog(@"updating user location..");
 //    NSLog(@"user location is now %f, %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
-    if(TRUE){
+    
+    
+    if(shouldZoom){
         //self.initalLocation = userLocation.location;
         MKCoordinateRegion region;
         region.center = cycleMap.userLocation.coordinate;
         
         //compute the region with something less arbitrary..
-        region.span = MKCoordinateSpanMake(0.1, 0.1);
+        region.span = MKCoordinateSpanMake(0.01, 0.01);
         
         region = [mapView regionThatFits:region];
         [mapView setRegion:region animated:YES];
+        shouldZoom = NO;
     }
     
     if(tracking){
@@ -81,7 +85,7 @@
         WayPoint *_wp = [[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate];
         if(_wp != nil){
             [self.currentPathWayPoints addObject:_wp];
-            //NSLog(@"added a point : %d", [self.currentPathWayPoints count]);
+            NSLog(@"added a point : %d", [self.currentPathWayPoints count]);
         }
         if(self.currentPathWayPoints.count >= 2){
             [self computePattern];
@@ -111,33 +115,35 @@
 }
 
 -(void)computePattern{
-    //NSLog(@"processing %d points", self.currentPathWayPoints.count);
-    //[self.cycleMap removeOverlay:self.routeLine];
+    NSLog(@"processing %d points", self.currentPathWayPoints.count);
+
     
     
     
-    //MKMapPoint* pointArr = malloc(sizeof(CLLocationCoordinate2D)*self.currentPathWayPoints.count);
-    MKMapPoint* pointArr = malloc(sizeof(MKMapPoint)*self.currentPathWayPoints.count);
+    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D)*self.currentPathWayPoints.count);
+    //MKMapPoint* pointArr = malloc(sizeof(MKMapPoint)*self.currentPathWayPoints.count);
     
     int idx = 0;
     for(WayPoint *wp in self.currentPathWayPoints){
         
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([wp.lat doubleValue], [wp.lon doubleValue]);
         //NSLog(@"%d of %d - %f : %f", idx, self.currentPathWayPoints.count, [wp.lat doubleValue], [wp.lon doubleValue]);
-        MKMapPoint point = MKMapPointForCoordinate(coord);
+        //MKMapPoint point = MKMapPointForCoordinate(coord);
 
-        pointArr[idx] = point;
+        //pointArr[idx] = point;
+        pointArr[idx] = coord;
         idx++;
 
     }
-    /*for(int i = 0; i<idx ; i++){
-        NSLog(@"%f, %f", pointArr[i].x, pointArr[i].y);
-    }*/
-    self.routeLine = [MKPolyline polylineWithPoints:pointArr count:idx-1];
+    for(int i = 0; i<idx ; i++){
+        NSLog(@"point %d : %f, %f", i, pointArr[i].latitude, pointArr[i].longitude);
+    }
+    self.routeLine = [MKPolyline polylineWithCoordinates:pointArr count:idx-1];
 
     free(pointArr);
     if(self.routeLine != nil){
         NSLog(@"routeLine is not nil");
+        //[self.cycleMap removeOverlay:self.routeLine];
         [self.cycleMap addOverlay:self.routeLine];        
     }
 
