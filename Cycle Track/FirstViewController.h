@@ -17,8 +17,8 @@
 
 @property(nonatomic) BOOL tracking;
 
-@property(nonatomic, weak)MKPolyline *routeLine;
-@property(nonatomic, weak)MKPolylineView *routeLineView;
+@property(nonatomic, strong)MKPolyline *routeLine;
+@property(nonatomic, strong)MKPolylineView *routeLineView;
 
 @property(nonatomic, retain)NSMutableArray *currentPathWayPoints;
 
