@@ -25,4 +25,5 @@
 @property(nonatomic, strong)CLLocationManager *locationManager;
 
 -(void)trackingToggled;
+-(void)computePattern;
 @end
