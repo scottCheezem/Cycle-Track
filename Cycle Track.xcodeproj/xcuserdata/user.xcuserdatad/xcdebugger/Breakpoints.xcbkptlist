@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cycle Track/FirstViewController.m"
-         timestampString = "354576281.418853"
+         timestampString = "354588498.007247"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "53"
+         endingLineNumber = "53"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cycle Track/FirstViewController.m"
-         timestampString = "354576281.418853"
+         timestampString = "354588498.007247"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "117"
-         endingLineNumber = "117"
+         startingLineNumber = "118"
+         endingLineNumber = "118"
          landmarkName = "-locationManager:didFailWithError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,12 +34,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cycle Track/FirstViewController.m"
-         timestampString = "354576281.418853"
+         timestampString = "354588498.007247"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "181"
-         endingLineNumber = "181"
+         startingLineNumber = "182"
+         endingLineNumber = "182"
          landmarkName = "-computePattern"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cycle Track/SecondViewController.m"
+         timestampString = "354646053.260227"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "25"
+         endingLineNumber = "25"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

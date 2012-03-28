@@ -15,16 +15,21 @@
 
 @implementation SecondViewController
 @synthesize trackingToggleButton;
+@synthesize SpeedLabel;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    UIFont *digitFont = [UIFont fontWithName:@"digital-7" size:80];
+    [SpeedLabel setFont:digitFont];
+    SpeedLabel.text=@"test";
 }
 
 - (void)viewDidUnload
 {
     [self setTrackingToggleButton:nil];
+    [self setSpeedLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -41,5 +46,8 @@
     [[self tabBarController]setSelectedIndex:0];
 
 }
+
+
+
 
 @end

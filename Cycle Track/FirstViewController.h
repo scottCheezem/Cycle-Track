@@ -11,7 +11,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WayPoint.h"
 
-@interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>
+@interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>{
+    
+    CLLocationSpeed speed;
+    CLLocationSpeed currentSpeed;
+    float fltDistanceTravelled;
+    
+}
 @property (weak, nonatomic) IBOutlet MKMapView *cycleMap;
 @property (weak, nonatomic) IBOutlet UILabel *trackingLabel;
 
@@ -24,6 +30,12 @@
 
 @property(nonatomic, strong)CLLocationManager *locationManager;
 
--(void)trackingToggled;
+
+
+
+
+
+
+-(BOOL)trackingToggled;
 -(void)computePattern;
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0DBD9C15237A1700C7FF71 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */; };
 		CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */; };
 		CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F12151EACC60023A8EC /* UIKit.framework */; };
 		CED94F15151EACC60023A8EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F14151EACC60023A8EC /* Foundation.framework */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
 		CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
+		CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "digital-7.ttf"; path = "Cycle Track/digital-7.ttf"; sourceTree = SOURCE_ROOT; };
 		CED94F0E151EACC60023A8EC /* Cycle Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cycle Track.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED94F12151EACC60023A8EC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CED94F14151EACC60023A8EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -103,6 +105,7 @@
 				CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */,
 				CED94F21151EACC60023A8EC /* AppDelegate.h */,
 				CED94F22151EACC60023A8EC /* AppDelegate.m */,
+				CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */,
 				CED94F24151EACC60023A8EC /* MainStoryboard.storyboard */,
 				CED94F27151EACC60023A8EC /* FirstViewController.h */,
 				CED94F28151EACC60023A8EC /* FirstViewController.m */,
@@ -185,6 +188,7 @@
 				CED94F2D151EACC60023A8EC /* first@2x.png in Resources */,
 				CED94F32151EACC60023A8EC /* second.png in Resources */,
 				CED94F34151EACC60023A8EC /* second@2x.png in Resources */,
+				CE0DBD9C15237A1700C7FF71 /* digital-7.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

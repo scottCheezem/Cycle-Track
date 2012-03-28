@@ -190,7 +190,7 @@ bool shouldZoom;
 
 }
 
--(void)trackingToggled{
+-(BOOL)trackingToggled{
     
     self.tracking = !self.tracking;
 
@@ -202,7 +202,7 @@ bool shouldZoom;
         //setStopPoint
     }
     NSLog(@"tracking is %d", tracking);
-    
+    return tracking;
 }
 
 

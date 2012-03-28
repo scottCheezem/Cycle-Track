@@ -10,5 +10,6 @@
 
 @interface SecondViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *trackingToggleButton;
+@property (weak, nonatomic) IBOutlet UILabel *SpeedLabel;
 
 @end
