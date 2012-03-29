@@ -10,14 +10,14 @@
 
 @implementation WayPoint
 
-@synthesize timeStamp,lat,lon;
+@synthesize timeStamp,lat,lon,isStop,isStart;
 
 
 -(WayPoint*)initWayPointFromUserLocation:(CLLocationCoordinate2D)userPosition{
     
     WayPoint *wp = [[WayPoint alloc]init ];
     wp.timeStamp = [NSDate date];
-    NSLog(@"new WP at %@", wp.timeStamp);
+    //NSLog(@"new WP at %@", wp.timeStamp);
     wp.lat = [NSNumber numberWithDouble:userPosition.latitude];
     wp.lon = [NSNumber numberWithDouble:userPosition.longitude];
     

@@ -15,7 +15,8 @@
 @property(nonatomic, retain) NSDate *timeStamp;
 @property(nonatomic, retain) NSNumber *lat;
 @property(nonatomic, retain) NSNumber *lon;
-
+@property(nonatomic) BOOL isStart;
+@property(nonatomic) BOOL isStop;
 
 -(WayPoint *)initWayPointFromUserLocation: (CLLocationCoordinate2D)userPosition;
 @end

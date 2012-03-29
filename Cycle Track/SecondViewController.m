@@ -7,7 +7,7 @@
 //
 
 #import "SecondViewController.h"
-#import "FirstViewController.h"
+
 
 @interface SecondViewController ()
 
@@ -23,7 +23,11 @@
 	// Do any additional setup after loading the view, typically from a nib.
     UIFont *digitFont = [UIFont fontWithName:@"digital-7" size:80];
     [SpeedLabel setFont:digitFont];
-    SpeedLabel.text=@"test";
+
+    
+    fc = [self.tabBarController.viewControllers objectAtIndex:0];
+    
+    SpeedLabel.text=[NSString stringWithFormat:@"%f", fc.speed];
 }
 
 - (void)viewDidUnload
@@ -39,8 +43,8 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 - (IBAction)toggleTracking:(id)sender {
-
     FirstViewController *fc = [self.tabBarController.viewControllers objectAtIndex:0];
+
     NSLog(@"tracking is now %d", fc.tracking);
     [fc trackingToggled];
     [[self tabBarController]setSelectedIndex:0];

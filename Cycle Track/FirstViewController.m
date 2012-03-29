@@ -8,17 +8,18 @@
 
 /*WISH LIST
  -get the stop start button working...
- -add button to follow point...some sort of system button?
+ -add button to follow point user location (also compas?)...some sort of system button?
  -show start and stop points in a path - add annotations - and figure 
  -turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
  -store a record : a copy of the array of points.
  -show a history table
- -show current speed in the second view
+ -show current speed in the second view and in the tracking label...
  
  */
 
 
 #import "FirstViewController.h"
+
 
 @interface FirstViewController ()
 
@@ -30,10 +31,16 @@
 @synthesize tracking;
 @synthesize routeLine, routeLineView, currentPathWayPoints;
 @synthesize locationManager;
-bool shouldZoom;
+@synthesize speed;
+//bool shouldZoom;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    //set the font
+    [trackingLabel setFont:[UIFont fontWithName:@"digital-7" size:20]];
+    
+    
     self.currentPathWayPoints = [[NSMutableArray alloc] init ];
 
     cycleMap.delegate = self;
@@ -76,9 +83,33 @@ bool shouldZoom;
 }
 
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    //NSLog(@"didupdateLocation");
+    //trackingLabel.text = [NSString stringWithFormat:@"%f", newLocation.speed];
+    
+    if(oldLocation != nil){
+        CLLocationDistance deltaX = [newLocation getDistanceFrom:oldLocation];
+        NSTimeInterval sinceLast = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
+        speed = deltaX/sinceLast;
+        NSLog(@"%f m/s", speed);
+        
+    }
+    
+    
+    
+    
+    if(tracking){
+            fltDistanceTravelled +=[self getDistanceInMiles:newLocation fromLocation:oldLocation];
+    }else{
+        fltDistanceTravelled = 0;
+    }
+    trackingLabel.text = [NSString stringWithFormat:@"%f", fltDistanceTravelled];
+    
+}
+
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
-    NSLog(@"updating user location..");
+//    NSLog(@"updating user location..");
 //    NSLog(@"user location is now %f, %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
     
     
@@ -96,7 +127,7 @@ bool shouldZoom;
     }
     
     if(tracking){
-        
+
         
         [self.currentPathWayPoints addObject:[[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate]];
         
@@ -197,6 +228,8 @@ bool shouldZoom;
     if(tracking){
         trackingLabel.text = @"trackng";
         //setStartPoint
+        
+        
     }else{
         trackingLabel.text = @"";
         //setStopPoint
@@ -204,6 +237,33 @@ bool shouldZoom;
     NSLog(@"tracking is %d", tracking);
     return tracking;
 }
+
+
+
+-(float)getDistanceInMiles:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    float lat1,lon1,lat2,lon2;
+    
+    lat1 = newLocation.coordinate.latitude  * M_PI / 180;
+    lon1 = newLocation.coordinate.longitude * M_PI / 180;
+    
+    lat2 = oldLocation.coordinate.latitude  * M_PI / 180;   
+    lon2 = oldLocation.coordinate.longitude * M_PI / 180;
+    
+    float R = 3963; // km
+    float dLat = lat2-lat1;
+    float dLon = lon2-lon1; 
+    
+    float a = sin(dLat/2) * sin(dLat/2) + cos(lat1) * cos(lat2) * sin(dLon/2) * sin(dLon/2); 
+    float c = 2 * atan2(sqrt(a), sqrt(1-a)); 
+    float d = R * c;
+    
+    NSLog(@"Miles-->%f",d);
+    
+    return d;
+}
+
+
 
 
 @end

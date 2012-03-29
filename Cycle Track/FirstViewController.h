@@ -12,9 +12,7 @@
 #import "WayPoint.h"
 
 @interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>{
-    
-    CLLocationSpeed speed;
-    CLLocationSpeed currentSpeed;
+    BOOL shouldZoom;
     float fltDistanceTravelled;
     
 }
@@ -32,7 +30,7 @@
 
 
 
-
+@property(nonatomic)double speed;
 
 
 
