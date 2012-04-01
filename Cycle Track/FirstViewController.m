@@ -7,7 +7,7 @@
 //
 
 /*WISH LIST
- -get the stop start button working...
+ -get the stop start button working...(should it clear the routes on the map or should that be a seperate button?)
  -add button to follow point user location (also compas?)...some sort of system button?
  -show start and stop points in a path - add annotations - and figure 
  -turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
@@ -21,6 +21,7 @@
 #import "FirstViewController.h"
 
 
+
 @interface FirstViewController ()
 
 @end
@@ -30,8 +31,8 @@
 @synthesize trackingLabel;
 @synthesize tracking;
 @synthesize routeLine, routeLineView, currentPathWayPoints;
-@synthesize locationManager;
-@synthesize locationController;
+//@synthesize locationManager;
+//@synthesize locationController;
 @synthesize speed;
 //bool shouldZoom;
 - (void)viewDidLoad
@@ -42,30 +43,26 @@
 
     //set the font
     [trackingLabel setFont:[UIFont fontWithName:@"digital-7" size:20]];
-    
+       
     
     self.currentPathWayPoints = [[NSMutableArray alloc] init ];
 
     cycleMap.delegate = self;
     
-    
-    locationController = [LocationController sharedLocationControllerInstance];
 
-    
-    
-    self.locationManager = [[CLLocationManager alloc] init];
-    
-    [self.locationManager setDelegate:self];
+    locationController = [LocationController sharedLocationController];
 
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+   NSDictionary *locationControllerParcel = [[NSDictionary alloc]init ];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate) name:@"locationUpdate" object:nil];
     
-    [self.locationManager startUpdatingLocation];
+    
+    [[LocationController sharedLocationController].locationManager startUpdatingLocation];
     
     self.routeLine = [[MKPolyline alloc] init];
 
     shouldZoom = YES;
     
-    if(self.locationManager.location == nil){
+    if(locationController.locationManager.location == nil){
         NSLog(@"no location");
     }    
 }
@@ -92,21 +89,26 @@
 }
 
 
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-    //NSLog(@"didupdateLocation");
-    //trackingLabel.text = [NSString stringWithFormat:@"%f", newLocation.speed];
+-(void)locationControllerDidUpdate{
+    NSLog(@"recieved notification in fc");
+    
+}
+
+
+
+/*-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    NSLog(@"didupdateLocation");
+    //trackingLabel.text = [NSString stringWithFormat:@"%f mps", newLocation.speed];
     
     if(oldLocation != nil){
         CLLocationDistance deltaX = [newLocation getDistanceFrom:oldLocation];
         NSLog(@"traveled %f", deltaX);
         NSTimeInterval sinceLast = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
         speed = deltaX/sinceLast;
+        
         NSLog(@"%f m/s", speed);
         
     }
-    
-    
-    
     
     if(tracking){
             fltDistanceTravelled +=[self getDistanceInMiles:newLocation fromLocation:oldLocation];
@@ -115,7 +117,10 @@
     }
     trackingLabel.text = [NSString stringWithFormat:@"%f", fltDistanceTravelled];
     
-}
+}*/
+
+
+
 
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
@@ -242,7 +247,7 @@
         
     }else{
         trackingLabel.text = @"";
-        locationManager.stopUpdatingLocation;
+        //locationController.locationManager.stopUpdatingLocation;
     }
     NSLog(@"tracking is %d", tracking);
     return tracking;

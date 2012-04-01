@@ -25,9 +25,20 @@
     [SpeedLabel setFont:digitFont];
 
     
+    
+    //locationController = [LocationController sharedLocationController];
+    //[LocationController sharedLocationController].delegate = self;
+    
+    
+    
     fc = [self.tabBarController.viewControllers objectAtIndex:0];
     
     SpeedLabel.text=[NSString stringWithFormat:@"%f", fc.speed];
+    
+    
+    
+    
+    
 }
 
 - (void)viewDidUnload
@@ -40,7 +51,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     
-    SpeedLabel.text = [NSString stringWithFormat:@"%.3f",fc.speed];
+    //SpeedLabel.text = [NSString stringWithFormat:@"%.3f",fc.speed];
 }
 
 
@@ -52,9 +63,9 @@
     //FirstViewController *fc = [self.tabBarController.viewControllers objectAtIndex:0];
 
     NSLog(@"tracking is now %d", fc.tracking);
-    [fc trackingToggled];
-    [[self tabBarController]setSelectedIndex:0];
-
+    if([fc trackingToggled] == YES){
+        [[self tabBarController]setSelectedIndex:0];
+    }
 }
 
 

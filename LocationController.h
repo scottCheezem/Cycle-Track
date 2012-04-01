@@ -17,23 +17,24 @@
 #import <CoreLocation/CoreLocation.h>
 
 // protocol for sending location updates to another view controller
-@protocol LocationControllerDelegate
+@protocol LocationControllerDelegate//<NSObject>
 @required
 - (void)locationUpdate:(CLLocation*)location;
 @end
 
-@interface LocationController : NSObject  {
+@interface LocationController : NSObject<CLLocationManagerDelegate>  {
     
 	CLLocationManager* locationManager;
 	CLLocation* location;
-	id delegate;
+	//id delegate;
 }
 
 @property (nonatomic, retain) CLLocationManager* locationManager;
 @property (nonatomic, retain) CLLocation* location;
 @property (nonatomic, assign) id  delegate;
 
-+ (LocationController*)sharedLocationControllerInstance; // Singleton method
++ (LocationController*)sharedLocationController; // Singleton method
+-(void)locationControllerDidUpdate:(NSNotification *)note;
 
 @end
 

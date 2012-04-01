@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LocationController.h"
 #import "FirstViewController.h"
 
-
 @interface SecondViewController : UIViewController{
+    LocationController *locationController;
     FirstViewController *fc;
+    
 }
 @property (weak, nonatomic) IBOutlet UIButton *trackingToggleButton;
 @property (weak, nonatomic) IBOutlet UILabel *SpeedLabel;

@@ -15,10 +15,44 @@
 
 #import "LocationController.h"
 
-static LocationController* sharedCLDelegate = nil;
+//static LocationController* sharedCLDelegate = nil;
 
 @implementation LocationController
-@synthesize locationManager, location;//, delegate;
+@synthesize locationManager, location, delegate;
+
+-(id)init{
+    self = [super init];
+    if(self != nil){
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    }
+    return self;
+    
+}
+
+/*-(void)notify{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"locationUpdate" object:nil];
+    NSLog(@"sending notification");    
+    
+}*/
+
+/*-(void)locationControllerDidUpdate:(NSNotification *)note{
+    NSLog(@"recieved notification in fc");
+    
+}*/
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    //return the new and old locations in dictionary form, send out notifucation...I guess???
+    NSLog(@"updatingin location singleton");
+    
+    NSMutableDictionary *locationDict = [[NSMutableDictionary alloc] init];
+    [locationDict setValue:newLocation forKey:@"newLocation"];
+    //[locationDict setValue:oldLocation forKey:@"oldLocation"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"locationUpdate" object:locationDict];// userInfo:locationDict];
+    
+    
+}
 
 #pragma mark - Singleton implementation in ARC
 + (LocationController *)sharedLocationController
@@ -30,5 +64,11 @@ static LocationController* sharedCLDelegate = nil;
     });
     return sharedLocationControllerInstance;
 }
+
+
+
+
+
+
 
 @end
