@@ -31,11 +31,14 @@
 @synthesize tracking;
 @synthesize routeLine, routeLineView, currentPathWayPoints;
 @synthesize locationManager;
+@synthesize locationController;
 @synthesize speed;
 //bool shouldZoom;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    //LocationController* locationController = [LocationController sharedLocationController];
 
     //set the font
     [trackingLabel setFont:[UIFont fontWithName:@"digital-7" size:20]];
@@ -44,6 +47,12 @@
     self.currentPathWayPoints = [[NSMutableArray alloc] init ];
 
     cycleMap.delegate = self;
+    
+    
+    locationController = [LocationController sharedLocationControllerInstance];
+
+    
+    
     self.locationManager = [[CLLocationManager alloc] init];
     
     [self.locationManager setDelegate:self];
@@ -89,6 +98,7 @@
     
     if(oldLocation != nil){
         CLLocationDistance deltaX = [newLocation getDistanceFrom:oldLocation];
+        NSLog(@"traveled %f", deltaX);
         NSTimeInterval sinceLast = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
         speed = deltaX/sinceLast;
         NSLog(@"%f m/s", speed);
@@ -232,7 +242,7 @@
         
     }else{
         trackingLabel.text = @"";
-        //setStopPoint
+        locationManager.stopUpdatingLocation;
     }
     NSLog(@"tracking is %d", tracking);
     return tracking;

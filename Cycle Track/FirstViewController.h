@@ -10,6 +10,7 @@
 #import <MapKit/Mapkit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "WayPoint.h"
+#import "LocationController.h"
 
 @interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>{
     BOOL shouldZoom;
@@ -28,7 +29,7 @@
 
 @property(nonatomic, strong)CLLocationManager *locationManager;
 
-
+@property(nonatomic, strong)LocationController *locationController;
 
 @property(nonatomic)double speed;
 

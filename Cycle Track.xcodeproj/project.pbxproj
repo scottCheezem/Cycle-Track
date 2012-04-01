@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE0DBD9C15237A1700C7FF71 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */; };
+		CE0EB10C152663F30053CE22 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EB10B152663F30053CE22 /* LocationController.m */; };
 		CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */; };
 		CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F12151EACC60023A8EC /* UIKit.framework */; };
 		CED94F15151EACC60023A8EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F14151EACC60023A8EC /* Foundation.framework */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE0EB10A152663F30053CE22 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationController.h; path = ../LocationController.h; sourceTree = "<group>"; };
+		CE0EB10B152663F30053CE22 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationController.m; path = ../LocationController.m; sourceTree = "<group>"; };
 		CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
 		CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
 		CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "digital-7.ttf"; path = "Cycle Track/digital-7.ttf"; sourceTree = SOURCE_ROOT; };
@@ -101,6 +104,8 @@
 		CED94F18151EACC60023A8EC /* Cycle Track */ = {
 			isa = PBXGroup;
 			children = (
+				CE0EB10A152663F30053CE22 /* LocationController.h */,
+				CE0EB10B152663F30053CE22 /* LocationController.m */,
 				CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */,
 				CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */,
 				CED94F21151EACC60023A8EC /* AppDelegate.h */,
@@ -204,6 +209,7 @@
 				CED94F23151EACC60023A8EC /* AppDelegate.m in Sources */,
 				CED94F29151EACC60023A8EC /* FirstViewController.m in Sources */,
 				CED94F30151EACC60023A8EC /* SecondViewController.m in Sources */,
+				CE0EB10C152663F30053CE22 /* LocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
