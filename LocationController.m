@@ -6,12 +6,6 @@
 //  Copyright (c) 2012 433 E Tompkins St. All rights reserved.
 //
 
-//
-//  LocationController.m
-//
-//  Created by Jinru on 12/19/09.
-//  Copyright 2009 Arizona State University. All rights reserved.
-//
 
 #import "LocationController.h"
 
@@ -31,16 +25,6 @@
     
 }
 
-/*-(void)notify{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"locationUpdate" object:nil];
-    NSLog(@"sending notification");    
-    
-}*/
-
-/*-(void)locationControllerDidUpdate:(NSNotification *)note{
-    NSLog(@"recieved notification in fc");
-    
-}*/
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     //return the new and old locations in dictionary form, send out notifucation...I guess???
@@ -48,8 +32,8 @@
     
     NSMutableDictionary *locationDict = [[NSMutableDictionary alloc] init];
     [locationDict setValue:newLocation forKey:@"newLocation"];
-    //[locationDict setValue:oldLocation forKey:@"oldLocation"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"locationUpdate" object:locationDict];// userInfo:locationDict];
+    [locationDict setValue:oldLocation forKey:@"oldLocation"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"locationUpdate" object:self userInfo:locationDict];
     
     
 }

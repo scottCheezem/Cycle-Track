@@ -52,8 +52,8 @@
 
     locationController = [LocationController sharedLocationController];
 
-   NSDictionary *locationControllerParcel = [[NSDictionary alloc]init ];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate) name:@"locationUpdate" object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate:) name:@"locationUpdate" object:nil];
     
     
     [[LocationController sharedLocationController].locationManager startUpdatingLocation];
@@ -89,41 +89,37 @@
 }
 
 
--(void)locationControllerDidUpdate{
-    NSLog(@"recieved notification in fc");
+-(void)locationControllerDidUpdate:(NSNotification *)note{
+    CLLocation *newLocation = [[note userInfo] valueForKey:@"newLocation"];
+    CLLocation *oldLocation = [[note userInfo] valueForKey:@"oldLocation"];
+    
+    
+    CLLocationDistance deltaMeters = [newLocation getDistanceFrom:oldLocation];
+    NSLog(@"fc:traveled %f", deltaMeters);
+    NSTimeInterval deltaSeconds = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
+    speed = deltaMeters/deltaSeconds;
+    
+    //NSLog(@"%f m/s", speed);
+    
+    
+    
+    //old code - find a new home for it
+    
+    /*if(tracking){
+     fltDistanceTravelled +=[self getDistanceInMiles:newLocation fromLocation:oldLocation];
+     }else{
+     fltDistanceTravelled = 0;
+     }
+     trackingLabel.text = [NSString stringWithFormat:@"%f", fltDistanceTravelled];*/
+    
     
 }
 
 
 
-/*-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-    NSLog(@"didupdateLocation");
-    //trackingLabel.text = [NSString stringWithFormat:@"%f mps", newLocation.speed];
-    
-    if(oldLocation != nil){
-        CLLocationDistance deltaX = [newLocation getDistanceFrom:oldLocation];
-        NSLog(@"traveled %f", deltaX);
-        NSTimeInterval sinceLast = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
-        speed = deltaX/sinceLast;
-        
-        NSLog(@"%f m/s", speed);
-        
-    }
-    
-    if(tracking){
-            fltDistanceTravelled +=[self getDistanceInMiles:newLocation fromLocation:oldLocation];
-    }else{
-        fltDistanceTravelled = 0;
-    }
-    trackingLabel.text = [NSString stringWithFormat:@"%f", fltDistanceTravelled];
-    
-}*/
-
-
-
-
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+    //the mapView and the locationManager do things differently...since locationController is singleton use that to build our route...
 //    NSLog(@"updating user location..");
 //    NSLog(@"user location is now %f, %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
     

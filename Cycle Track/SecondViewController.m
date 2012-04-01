@@ -32,8 +32,8 @@
     
     
     fc = [self.tabBarController.viewControllers objectAtIndex:0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate:) name:@"locationUpdate" object:nil];
     
-    SpeedLabel.text=[NSString stringWithFormat:@"%f", fc.speed];
     
     
     
@@ -68,6 +68,34 @@
     }
 }
 
+-(void)locationControllerDidUpdate:(NSNotification *)note{
+    //NSLog(@"got note from second view");
+    CLLocation *newLocation = [[note userInfo] valueForKey:@"newLocation"];
+    CLLocation *oldLocation = [[note userInfo] valueForKey:@"oldLocation"];
+    
+    
+    CLLocationDistance deltaMeters = [newLocation getDistanceFrom:oldLocation];
+    NSLog(@"sc:traveled %f", deltaMeters);
+    NSTimeInterval deltaSeconds = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
+    float speed = deltaMeters/deltaSeconds;
+    
+    SpeedLabel.text=[NSString stringWithFormat:@"%.3f",speed];
+    
+    NSLog(@"%f m/s", speed);
+    
+    
+    
+    //old code - find a new home for it
+    
+    /*if(tracking){
+     fltDistanceTravelled +=[self getDistanceInMiles:newLocation fromLocation:oldLocation];
+     }else{
+     fltDistanceTravelled = 0;
+     }
+     trackingLabel.text = [NSString stringWithFormat:@"%f", fltDistanceTravelled];*/
+    
+    
+}
 
 
 

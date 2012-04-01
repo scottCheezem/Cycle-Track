@@ -34,7 +34,7 @@
 @property (nonatomic, assign) id  delegate;
 
 + (LocationController*)sharedLocationController; // Singleton method
--(void)locationControllerDidUpdate:(NSNotification *)note;
+
 
 @end
 
