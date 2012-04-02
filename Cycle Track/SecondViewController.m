@@ -16,16 +16,19 @@
 @implementation SecondViewController
 @synthesize trackingToggleButton;
 @synthesize SpeedLabel;
+@synthesize distLabel;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    UIFont *digitFont = [UIFont fontWithName:@"digital-7" size:80];
-    [SpeedLabel setFont:digitFont];
+    UIFont *digitFontBig = [UIFont fontWithName:@"digital-7" size:80];
+    UIFont *digitFont = [UIFont fontWithName:@"digital-7" size:20];
+    [SpeedLabel setFont:digitFontBig];
+    [distLabel setFont:digitFont];
 
     
-    
+
     //locationController = [LocationController sharedLocationController];
     //[LocationController sharedLocationController].delegate = self;
     
@@ -45,6 +48,7 @@
 {
     [self setTrackingToggleButton:nil];
     [self setSpeedLabel:nil];
+    [self setDistLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -74,12 +78,13 @@
     CLLocation *oldLocation = [[note userInfo] valueForKey:@"oldLocation"];
     
     
-    CLLocationDistance deltaMeters = [newLocation getDistanceFrom:oldLocation];
+    CLLocationDistance deltaMeters = [newLocation distanceFromLocation:oldLocation];
+    fltDistance +=deltaMeters;
     NSLog(@"sc:traveled %f", deltaMeters);
     NSTimeInterval deltaSeconds = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
     float speed = deltaMeters/deltaSeconds;
     
-    SpeedLabel.text=[NSString stringWithFormat:@"%.3f",speed];
+    SpeedLabel.text=[NSString stringWithFormat:@"%.3f m/s",speed];
     
     NSLog(@"%f m/s", speed);
     

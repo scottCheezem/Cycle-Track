@@ -22,6 +22,7 @@
 }
 @property (weak, nonatomic) IBOutlet MKMapView *cycleMap;
 @property (weak, nonatomic) IBOutlet UILabel *trackingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *disLabel;
 
 @property(nonatomic) BOOL tracking;
 

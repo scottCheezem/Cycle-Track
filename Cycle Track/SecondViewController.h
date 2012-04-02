@@ -13,9 +13,11 @@
 @interface SecondViewController : UIViewController{
     LocationController *locationController;
     FirstViewController *fc;
+    float fltDistance;
     
 }
 @property (weak, nonatomic) IBOutlet UIButton *trackingToggleButton;
 @property (weak, nonatomic) IBOutlet UILabel *SpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distLabel;
 
 @end

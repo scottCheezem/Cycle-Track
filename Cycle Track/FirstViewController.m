@@ -29,6 +29,7 @@
 @implementation FirstViewController
 @synthesize cycleMap;
 @synthesize trackingLabel;
+@synthesize disLabel;
 @synthesize tracking;
 @synthesize routeLine, routeLineView, currentPathWayPoints;
 //@synthesize locationManager;
@@ -42,8 +43,10 @@
     //LocationController* locationController = [LocationController sharedLocationController];
 
     //set the font
-    [trackingLabel setFont:[UIFont fontWithName:@"digital-7" size:20]];
-       
+    UIFont *digiFont = [UIFont fontWithName:@"digital-7" size:20];
+
+    [trackingLabel setFont:digiFont];
+    [disLabel setFont:digiFont];
     
     self.currentPathWayPoints = [[NSMutableArray alloc] init ];
 
@@ -79,6 +82,7 @@
 {
     [self setCycleMap:nil];
     [self setTrackingLabel:nil];
+    [self setDisLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -94,19 +98,21 @@
     CLLocation *oldLocation = [[note userInfo] valueForKey:@"oldLocation"];
     
     
-    CLLocationDistance deltaMeters = [newLocation getDistanceFrom:oldLocation];
+    CLLocationDistance deltaMeters = [newLocation distanceFromLocation:oldLocation];
+    fltDistanceTravelled +=deltaMeters;
     NSLog(@"fc:traveled %f", deltaMeters);
     NSTimeInterval deltaSeconds = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
     speed = deltaMeters/deltaSeconds;
     
+    trackingLabel.text = [NSString stringWithFormat:@"%.3f m/s", speed];
+    disLabel.text = [NSString stringWithFormat:@"%.3f meters", fltDistanceTravelled];
+    
     //NSLog(@"%f m/s", speed);
-    
-    
     
     //old code - find a new home for it
     
     /*if(tracking){
-     fltDistanceTravelled +=[self getDistanceInMiles:newLocation fromLocation:oldLocation];
+     
      }else{
      fltDistanceTravelled = 0;
      }
