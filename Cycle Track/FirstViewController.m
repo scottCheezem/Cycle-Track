@@ -32,9 +32,10 @@
 @synthesize disLabel;
 @synthesize tracking;
 @synthesize routeLine, routeLineView, currentPathWayPoints;
+@synthesize annotations;
 //@synthesize locationManager;
 //@synthesize locationController;
-@synthesize speed;
+//@synthesize speed;
 //bool shouldZoom;
 - (void)viewDidLoad
 {
@@ -107,17 +108,6 @@
     trackingLabel.text = [NSString stringWithFormat:@"%.3f m/s", speed];
     disLabel.text = [NSString stringWithFormat:@"%.3f meters", fltDistanceTravelled];
     
-    //NSLog(@"%f m/s", speed);
-    
-    //old code - find a new home for it
-    
-    /*if(tracking){
-     
-     }else{
-     fltDistanceTravelled = 0;
-     }
-     trackingLabel.text = [NSString stringWithFormat:@"%f", fltDistanceTravelled];*/
-    
     
 }
 
@@ -125,9 +115,8 @@
 
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
-    //the mapView and the locationManager do things differently...since locationController is singleton use that to build our route...
-//    NSLog(@"updating user location..");
-//    NSLog(@"user location is now %f, %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+    
+    NSLog(@"updating user location..");
     
     
     if(shouldZoom){
@@ -146,7 +135,18 @@
     if(tracking){
 
         
-        [self.currentPathWayPoints addObject:[[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate]];
+        
+        //[self.currentPathWayPoints addObject:[[WayPoint alloc]initWayPointFromUserLocation:userLocation.coordinate]];
+        WayPoint *_wp = [[WayPoint alloc] initWayPointFromUserLocation:userLocation.coordinate];
+
+        
+        
+        if(self.currentPathWayPoints.count == 0){
+            _wp.isStart = YES;
+            
+        }
+        
+        [self.currentPathWayPoints addObject:_wp];
         
         NSLog(@"added a point : %d", [self.currentPathWayPoints count]);
         
@@ -159,7 +159,42 @@
     
 }
 
-
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    
+    
+    
+    NSLog(@"placeing annotations");
+    if([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    
+    
+    
+    
+    
+    //[annotation title
+    
+    else{// if([annotation isKindOfClass:[BusStopAnnotation class]]){
+        MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"stop"];
+        
+        pinAnnotation.canShowCallout = YES;
+        
+        
+        
+        /*UIButton *stopDetailsButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        pinAnnotation.rightCalloutAccessoryView = stopDetailsButton;*/
+        
+        //the image is throwing the centering off...FIX IT (in the image?)!
+        //busStopAnnotation.image = [UIImage imageNamed:@"bus.png"];
+        
+        return pinAnnotation;
+    }
+    
+    /*else if ([annotation isKindOfClass:[BusVehicleAnnotation class]]){
+     
+     }*/
+    
+}
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
 {
@@ -215,6 +250,19 @@
     int idx = 0;
     for(WayPoint *wp in self.currentPathWayPoints){
         
+        if(wp.isStart){
+            NSLog(@"found a start point");
+           //make an annotation gree pin, title = starting point with time?
+            cycleTrackAnnotation *startAnnote = [[cycleTrackAnnotation alloc]init];
+            startAnnote.wayPoint = wp;
+            //[annotations addObject:startAnnote];
+            [self.cycleMap addAnnotation:startAnnote];
+            
+            
+        }else if(wp.isStop){
+            
+        }
+        
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([wp.lat doubleValue], [wp.lon doubleValue]);
 
         pointArr[idx] = coord;
@@ -230,11 +278,16 @@
     self.routeLine = [MKPolyline polylineWithCoordinates:pointArr count:idx];
     NSLog(@"route line has %d points", self.routeLine.pointCount);
 
+    
+
+    
     free(pointArr);
     if(self.routeLine != nil){
         //[self.cycleMap removeOverlay:self.routeLine];
         [self.cycleMap addOverlay:self.routeLine];        
     }
+    
+    
 
 }
 
@@ -244,41 +297,20 @@
 
     if(tracking){
         trackingLabel.text = @"trackng";
-        //setStartPoint
+        //setStartPoint...taken care of in locationDidUpdate
+        
         
         
     }else{
         trackingLabel.text = @"";
-        //locationController.locationManager.stopUpdatingLocation;
+        
+        //setStopPoint...
     }
     NSLog(@"tracking is %d", tracking);
     return tracking;
 }
 
 
-
--(float)getDistanceInMiles:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    float lat1,lon1,lat2,lon2;
-    
-    lat1 = newLocation.coordinate.latitude  * M_PI / 180;
-    lon1 = newLocation.coordinate.longitude * M_PI / 180;
-    
-    lat2 = oldLocation.coordinate.latitude  * M_PI / 180;   
-    lon2 = oldLocation.coordinate.longitude * M_PI / 180;
-    
-    float R = 3963; // km
-    float dLat = lat2-lat1;
-    float dLon = lon2-lon1; 
-    
-    float a = sin(dLat/2) * sin(dLat/2) + cos(lat1) * cos(lat2) * sin(dLon/2) * sin(dLon/2); 
-    float c = 2 * atan2(sqrt(a), sqrt(1-a)); 
-    float d = R * c;
-    
-    NSLog(@"Miles-->%f",d);
-    
-    return d;
-}
 
 
 

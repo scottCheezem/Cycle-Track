@@ -10,6 +10,7 @@
 		CE0DBD9C15237A1700C7FF71 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */; };
 		CE0EB10C152663F30053CE22 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EB10B152663F30053CE22 /* LocationController.m */; };
 		CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */; };
+		CE6BF287152B6E6200DF4E26 /* cycleTrackAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF286152B6E6200DF4E26 /* cycleTrackAnnotation.m */; };
 		CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F12151EACC60023A8EC /* UIKit.framework */; };
 		CED94F15151EACC60023A8EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F14151EACC60023A8EC /* Foundation.framework */; };
 		CED94F17151EACC60023A8EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F16151EACC60023A8EC /* CoreGraphics.framework */; };
@@ -32,6 +33,8 @@
 		CE0EB10B152663F30053CE22 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationController.m; path = ../LocationController.m; sourceTree = "<group>"; };
 		CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
 		CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
+		CE6BF285152B6E6200DF4E26 /* cycleTrackAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cycleTrackAnnotation.h; sourceTree = "<group>"; };
+		CE6BF286152B6E6200DF4E26 /* cycleTrackAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cycleTrackAnnotation.m; sourceTree = "<group>"; };
 		CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "digital-7.ttf"; path = "Cycle Track/digital-7.ttf"; sourceTree = SOURCE_ROOT; };
 		CED94F0E151EACC60023A8EC /* Cycle Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cycle Track.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED94F12151EACC60023A8EC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -108,6 +111,8 @@
 				CE0EB10B152663F30053CE22 /* LocationController.m */,
 				CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */,
 				CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */,
+				CE6BF285152B6E6200DF4E26 /* cycleTrackAnnotation.h */,
+				CE6BF286152B6E6200DF4E26 /* cycleTrackAnnotation.m */,
 				CED94F21151EACC60023A8EC /* AppDelegate.h */,
 				CED94F22151EACC60023A8EC /* AppDelegate.m */,
 				CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */,
@@ -210,6 +215,7 @@
 				CED94F29151EACC60023A8EC /* FirstViewController.m in Sources */,
 				CED94F30151EACC60023A8EC /* SecondViewController.m in Sources */,
 				CE0EB10C152663F30053CE22 /* LocationController.m in Sources */,
+				CE6BF287152B6E6200DF4E26 /* cycleTrackAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -85,7 +85,7 @@
     float speed = deltaMeters/deltaSeconds;
     
     SpeedLabel.text=[NSString stringWithFormat:@"%.3f m/s",speed];
-    
+    distLabel.text =[NSString stringWithFormat:@"%.3f meters",fltDistance]; 
     NSLog(@"%f m/s", speed);
     
     

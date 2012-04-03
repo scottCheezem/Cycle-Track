@@ -12,12 +12,15 @@
 //#import "SecondViewController.h"
 #import "WayPoint.h"
 #import "LocationController.h"
+#import "cycleTrackAnnotation.h"
 
 @interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>{
     BOOL shouldZoom;
     float fltDistanceTravelled;
     //SecondViewController *sc;
     LocationController *locationController;
+    NSMutableArray *annotations;
+    double speed;
     
 }
 @property (weak, nonatomic) IBOutlet MKMapView *cycleMap;
@@ -31,11 +34,8 @@
 
 @property(nonatomic, retain)NSMutableArray *currentPathWayPoints;
 
-//@property(nonatomic, strong)CLLocationManager *locationManager;
+@property(nonatomic, retain)NSMutableArray *annotations;
 
-//@property(nonatomic, strong)LocationController *locationController;
-
-@property(nonatomic)double speed;
 
 
 
