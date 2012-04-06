@@ -32,7 +32,7 @@
 @synthesize disLabel;
 @synthesize tracking;
 @synthesize routeLine, routeLineView, currentPathWayPoints;
-@synthesize annotations;
+
 
 - (void)viewDidLoad
 {
@@ -135,13 +135,23 @@
     if([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
     }else if([annotation isKindOfClass:[cycleTrackAnnotation class]]){
-        NSLog(@"wheres my damn annotation?!");
-        MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"stop"];
         
+        NSLog(@"got an annotation");
+        cycleTrackAnnotation *ct = (cycleTrackAnnotation*)annotation;
+        MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+        if(ct.wayPoint.isStart){
+            pinAnnotation.pinColor = MKPinAnnotationColorGreen;
+        }else if(ct.wayPoint.isStop){
+            pinAnnotation.pinColor = MKPinAnnotationColorRed;
+        }else{
+            pinAnnotation.pinColor = MKPinAnnotationColorPurple;
+        }
+
+
         
         return pinAnnotation;
     }
-    
+    return nil;
     
 }
 
@@ -283,12 +293,14 @@
     //grab the last point in the current path and set it to a stop point.
     if(self.currentPathWayPoints.count > 0){
         WayPoint *_wp = [self.currentPathWayPoints objectAtIndex:self.currentPathWayPoints.count-1];
+        _wp.isStop = YES;
         cycleTrackAnnotation *stop = [[cycleTrackAnnotation alloc]init];
         stop.wayPoint = _wp;
         [self.cycleMap addAnnotation:stop];
     }
     
     NSArray *lastPath = [[NSArray alloc]initWithArray:self.currentPathWayPoints];
+    [pathHistory addObject:lastPath];
     [self.currentPathWayPoints removeAllObjects];
     
     

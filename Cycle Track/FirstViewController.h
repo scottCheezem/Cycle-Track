@@ -21,7 +21,7 @@
     float fltDistanceTravelled;
     //SecondViewController *sc;
     LocationController *locationController;
-    NSMutableArray *annotations;
+    NSMutableArray *pathHistory;
     double speed;
 
     
@@ -37,7 +37,7 @@
 
 @property(nonatomic, retain)NSMutableArray *currentPathWayPoints;
 
-@property(nonatomic, retain)NSMutableArray *annotations;
+//@property(nonatomic, retain)NSMutableArray *annotations;
 
 
 
