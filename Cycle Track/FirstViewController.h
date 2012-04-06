@@ -14,6 +14,8 @@
 #import "LocationController.h"
 #import "cycleTrackAnnotation.h"
 
+
+
 @interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>{
     BOOL shouldZoom;
     float fltDistanceTravelled;
@@ -21,6 +23,7 @@
     LocationController *locationController;
     NSMutableArray *annotations;
     double speed;
+
     
 }
 @property (weak, nonatomic) IBOutlet MKMapView *cycleMap;
@@ -38,7 +41,19 @@
 
 
 
+-(void)initLabels;
+
+-(void)computePattern;
+
+-(void)saveRoute;
+-(void)loadRoute;//give extra params so we know what to load.
+
+-(void)startTracking;
+-(void)stopTracking;
+
+-(void)addWayPoint:(MKUserLocation *)userLocation;
 
 -(BOOL)trackingToggled;
--(void)computePattern;
+
+
 @end

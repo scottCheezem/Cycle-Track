@@ -79,25 +79,23 @@
     
     
     CLLocationDistance deltaMeters = [newLocation distanceFromLocation:oldLocation];
-    fltDistance +=deltaMeters;
-    NSLog(@"sc:traveled %f", deltaMeters);
     NSTimeInterval deltaSeconds = [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp];
-    float speed = deltaMeters/deltaSeconds;
+
+    if(deltaMeters<50 && deltaMeters>=0){
     
-    SpeedLabel.text=[NSString stringWithFormat:@"%.3f m/s",speed];
-    distLabel.text =[NSString stringWithFormat:@"%.3f meters",fltDistance]; 
-    NSLog(@"%f m/s", speed);
+        fltDistance +=deltaMeters;
+    
+
+        float speed = deltaMeters/deltaSeconds;
+    
+        SpeedLabel.text=[NSString stringWithFormat:@"%.3f m/s",speed];
+        distLabel.text =[NSString stringWithFormat:@"%.3f meters",fltDistance]; 
+    
+    }
     
     
     
-    //old code - find a new home for it
-    
-    /*if(tracking){
-     fltDistanceTravelled +=[self getDistanceInMiles:newLocation fromLocation:oldLocation];
-     }else{
-     fltDistanceTravelled = 0;
-     }
-     trackingLabel.text = [NSString stringWithFormat:@"%f", fltDistanceTravelled];*/
+
     
     
 }

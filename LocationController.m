@@ -28,7 +28,7 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     //return the new and old locations in dictionary form, send out notifucation...I guess???
-    NSLog(@"updatingin location singleton");
+    //NSLog(@"updatingin location singleton");
     
     NSMutableDictionary *locationDict = [[NSMutableDictionary alloc] init];
     [locationDict setValue:newLocation forKey:@"newLocation"];

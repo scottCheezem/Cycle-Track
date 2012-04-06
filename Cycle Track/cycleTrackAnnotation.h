@@ -19,6 +19,7 @@
 @property(nonatomic, strong)WayPoint *wayPoint;
 @property(nonatomic, readonly)CLLocationCoordinate2D coordinate;
 
+-(CLLocationCoordinate2D)coordinate;
 
 @end
 

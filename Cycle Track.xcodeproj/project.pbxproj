@@ -11,6 +11,8 @@
 		CE0EB10C152663F30053CE22 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EB10B152663F30053CE22 /* LocationController.m */; };
 		CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */; };
 		CE6BF287152B6E6200DF4E26 /* cycleTrackAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF286152B6E6200DF4E26 /* cycleTrackAnnotation.m */; };
+		CEBDAE3E152E1C6A00ADA019 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBDAE3D152E1C6A00ADA019 /* AudioToolbox.framework */; };
+		CEBDAE41152E1C7400ADA019 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBDAE40152E1C7400ADA019 /* AVFoundation.framework */; };
 		CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F12151EACC60023A8EC /* UIKit.framework */; };
 		CED94F15151EACC60023A8EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F14151EACC60023A8EC /* Foundation.framework */; };
 		CED94F17151EACC60023A8EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F16151EACC60023A8EC /* CoreGraphics.framework */; };
@@ -36,6 +38,8 @@
 		CE6BF285152B6E6200DF4E26 /* cycleTrackAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cycleTrackAnnotation.h; sourceTree = "<group>"; };
 		CE6BF286152B6E6200DF4E26 /* cycleTrackAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cycleTrackAnnotation.m; sourceTree = "<group>"; };
 		CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "digital-7.ttf"; path = "Cycle Track/digital-7.ttf"; sourceTree = SOURCE_ROOT; };
+		CEBDAE3D152E1C6A00ADA019 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CEBDAE40152E1C7400ADA019 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CED94F0E151EACC60023A8EC /* Cycle Track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cycle Track.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED94F12151EACC60023A8EC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CED94F14151EACC60023A8EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBDAE41152E1C7400ADA019 /* AVFoundation.framework in Frameworks */,
+				CEBDAE3E152E1C6A00ADA019 /* AudioToolbox.framework in Frameworks */,
 				CED94F3D151EADC20023A8EC /* CoreLocation.framework in Frameworks */,
 				CED94F3B151EADBB0023A8EC /* MapKit.framework in Frameworks */,
 				CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */,
@@ -95,6 +101,8 @@
 		CED94F11151EACC60023A8EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEBDAE40152E1C7400ADA019 /* AVFoundation.framework */,
+				CEBDAE3D152E1C6A00ADA019 /* AudioToolbox.framework */,
 				CED94F3C151EADC20023A8EC /* CoreLocation.framework */,
 				CED94F3A151EADBB0023A8EC /* MapKit.framework */,
 				CED94F12151EACC60023A8EC /* UIKit.framework */,
