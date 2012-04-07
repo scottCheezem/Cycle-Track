@@ -66,7 +66,7 @@
 - (IBAction)toggleTracking:(id)sender {
     //FirstViewController *fc = [self.tabBarController.viewControllers objectAtIndex:0];
 
-    NSLog(@"tracking is now %d", fc.tracking);
+    //NSLog(@"tracking is now %d", fc.tracking);
     if([fc trackingToggled] == YES){
         [[self tabBarController]setSelectedIndex:0];
     }

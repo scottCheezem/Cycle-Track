@@ -11,22 +11,22 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
                 <viewController title="First" id="2" customClass="FirstViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="16">
+                    <view key="view" contentMode="scaleToFill" id="vGI-eF-Y26">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="dsh-Hy-3GA">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="kbJ-9Q-oLN">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="k5Z-WF-bPF">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="hVI-Vb-EGn">
                                 <rect key="frame" x="20" y="20" width="151" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="dist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="jeX-ao-GnP">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="dist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="d27-mI-Ojh">
                                 <rect key="frame" x="20" y="49" width="151" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -38,9 +38,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="7"/>
                     <connections>
-                        <outlet property="cycleMap" destination="dsh-Hy-3GA" id="jsN-2U-jDI"/>
-                        <outlet property="disLabel" destination="jeX-ao-GnP" id="nRG-Gn-wvI"/>
-                        <outlet property="trackingLabel" destination="k5Z-WF-bPF" id="7BS-6g-Ydh"/>
+                        <outlet property="cycleMap" destination="kbJ-9Q-oLN" id="fxM-5k-nFl"/>
+                        <outlet property="disLabel" destination="d27-mI-Ojh" id="DSs-EA-cv4"/>
+                        <outlet property="trackingLabel" destination="hVI-Vb-EGn" id="oHZ-9h-wPK"/>
                     </connections>
                 </viewController>
             </objects>

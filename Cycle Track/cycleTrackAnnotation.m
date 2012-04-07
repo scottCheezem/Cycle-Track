@@ -80,7 +80,7 @@
                     NSLog(@"%@ : %@", key,[placeMark.addressDictionary valueForKey:key]);
                 }*/
                 addressString = [placeMark.addressDictionary valueForKey:@"Name"];  
-                NSLog(@"found an address dictionary %@", [placeMark.addressDictionary valueForKey:@"Name"]);
+                //NSLog(@"found an address dictionary %@", [placeMark.addressDictionary valueForKey:@"Name"]);
 
 
             }        

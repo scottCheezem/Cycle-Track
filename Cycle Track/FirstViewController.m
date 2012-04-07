@@ -10,7 +10,7 @@
  X-get the stop start button working...(should it clear the routes on the map or should that be a seperate button?)
  -add button to follow point user location (also compas?)...some sort of system button?
  X-show start and stop points in a path - add annotations - and figure 
- -turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
+ ?-turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
  -store a record : a copy of the array of points.
  -show a history table
  X-show current speed in the second view and in the tracking label...
@@ -48,6 +48,8 @@
     
 
     locationController = [LocationController sharedLocationController];
+    
+
     
     self.routeLine = [[MKPolyline alloc] init];
 
@@ -94,6 +96,12 @@
         disLabel.text = [NSString stringWithFormat:@"%.3f meters", fltDistanceTravelled];
     }
     
+    if(tracking){
+         
+     [self addWayPoint:newLocation.coordinate];
+     }
+
+    
 }
 
 
@@ -101,7 +109,7 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     
-    //NSLog(@"updating user location..");
+    NSLog(@"updating user location..");
     
     //make this something seperate ?...
     if(shouldZoom){
@@ -119,9 +127,9 @@
 
     
     
-    if(tracking){
+    /*if(tracking){
         [self addWayPoint:userLocation];
-    }
+    }*/
     
 }
 
@@ -232,7 +240,7 @@
     }else{
         [self stopTracking];
     }
-    NSLog(@"tracking is %d", tracking);
+    //NSLog(@"tracking is %d", tracking);
     return tracking;
 }
 
@@ -255,6 +263,7 @@
     NSLog(@"trackig has started");
 
     [[LocationController sharedLocationController].locationManager startUpdatingLocation];
+    //[[LocationController sharedLocationController].locationManager startMonitoringSignificantLocationChanges];
     
     //register for locationUpdates from the locationController;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate:) name:@"locationUpdate" object:nil];
@@ -262,11 +271,12 @@
 }
 
 -(void)stopTracking{
-    NSLog(@"tracking has stopped");
+    
     [[NSNotificationCenter defaultCenter]removeObserver:self];    
     //locationCOntroller stopupdating.
     
     [[LocationController sharedLocationController].locationManager stopUpdatingLocation];
+    //[[LocationController sharedLocationController].locationManager startMonitoringSignificantLocationChanges];
     
     //deregister for updates.
     
@@ -283,23 +293,40 @@
     [self.currentPathWayPoints removeAllObjects];
     
     
-    
+    NSLog(@"tracking has stopped");
     
 }
 
--(void)addWayPoint:(MKUserLocation *)userLocation{
-    NSLog(@"adding a waypoint, %@", userLocation.location.timestamp);
+
+-(void)addWayPoint:(CLLocationCoordinate2D)userLocation{
+    WayPoint *_wp = [[WayPoint alloc] initWayPointFromUserLocation:userLocation];
+    
+    
+    if(self.currentPathWayPoints.count == 0){
+        _wp.isStart = YES;
+        
+        cycleTrackAnnotation *startAnnote = [[cycleTrackAnnotation alloc]initWithWayPoint:_wp];
+        
+        [self.cycleMap addAnnotation:startAnnote];
+        
+    }
+    
+    [self.currentPathWayPoints addObject:_wp];
+    
+    if(self.currentPathWayPoints.count >= 2){
+        
+        [self computePattern];
+    }
+}
+
+/*-(void)addWayPoint:(MKUserLocation *)userLocation{
     
     WayPoint *_wp = [[WayPoint alloc] initWayPointFromUserLocation:userLocation.coordinate];
     
     if(self.currentPathWayPoints.count == 0){
         _wp.isStart = YES;
         
-        NSLog(@"found a start point");
-        
         cycleTrackAnnotation *startAnnote = [[cycleTrackAnnotation alloc]initWithWayPoint:_wp];
-        NSLog(@"%@",startAnnote.title);
-
         
         [self.cycleMap addAnnotation:startAnnote];
 
@@ -312,7 +339,7 @@
         [self computePattern];
     }
 
-}
+}*/
 
 
 

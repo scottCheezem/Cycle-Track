@@ -9,17 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/Mapkit.h>
 #import <CoreLocation/CoreLocation.h>
-//#import "SecondViewController.h"
 #import "WayPoint.h"
 #import "LocationController.h"
 #import "cycleTrackAnnotation.h"
 
 
 
-@interface FirstViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>{
+@interface FirstViewController : UIViewController<MKMapViewDelegate>{//, CLLocationManagerDelegate>{
     BOOL shouldZoom;
     float fltDistanceTravelled;
-    //SecondViewController *sc;
     LocationController *locationController;
     NSMutableArray *pathHistory;
     double speed;
@@ -38,8 +36,6 @@
 
 @property(nonatomic, retain)NSMutableArray *currentPathWayPoints;
 
-//@property(nonatomic, retain)NSMutableArray *annotations;
-
 
 
 -(void)initLabels;
@@ -52,7 +48,8 @@
 -(void)startTracking;
 -(void)stopTracking;
 
--(void)addWayPoint:(MKUserLocation *)userLocation;
+//-(void)addWayPoint:(MKUserLocation *)userLocation;
+//-(void)addWayPoint:(CLLocationCoordinate2D *)userLocation;
 
 -(BOOL)trackingToggled;
 
