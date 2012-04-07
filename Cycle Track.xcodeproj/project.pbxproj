@@ -11,8 +11,6 @@
 		CE0EB10C152663F30053CE22 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EB10B152663F30053CE22 /* LocationController.m */; };
 		CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */; };
 		CE6BF287152B6E6200DF4E26 /* cycleTrackAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF286152B6E6200DF4E26 /* cycleTrackAnnotation.m */; };
-		CEBDAE3E152E1C6A00ADA019 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBDAE3D152E1C6A00ADA019 /* AudioToolbox.framework */; };
-		CEBDAE41152E1C7400ADA019 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBDAE40152E1C7400ADA019 /* AVFoundation.framework */; };
 		CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F12151EACC60023A8EC /* UIKit.framework */; };
 		CED94F15151EACC60023A8EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F14151EACC60023A8EC /* Foundation.framework */; };
 		CED94F17151EACC60023A8EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F16151EACC60023A8EC /* CoreGraphics.framework */; };
@@ -33,6 +31,7 @@
 /* Begin PBXFileReference section */
 		CE0EB10A152663F30053CE22 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationController.h; path = ../LocationController.h; sourceTree = "<group>"; };
 		CE0EB10B152663F30053CE22 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationController.m; path = ../LocationController.m; sourceTree = "<group>"; };
+		CE3027311530B9E1009A6586 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WayPoint.m; sourceTree = "<group>"; };
 		CE5D8B2E151EB9EC00E09AEB /* WayPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WayPoint.h; sourceTree = "<group>"; };
 		CE6BF285152B6E6200DF4E26 /* cycleTrackAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cycleTrackAnnotation.h; sourceTree = "<group>"; };
@@ -68,8 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEBDAE41152E1C7400ADA019 /* AVFoundation.framework in Frameworks */,
-				CEBDAE3E152E1C6A00ADA019 /* AudioToolbox.framework in Frameworks */,
 				CED94F3D151EADC20023A8EC /* CoreLocation.framework in Frameworks */,
 				CED94F3B151EADBB0023A8EC /* MapKit.framework in Frameworks */,
 				CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */,
@@ -84,6 +81,7 @@
 		CED94F03151EACC60023A8EC = {
 			isa = PBXGroup;
 			children = (
+				CE3027311530B9E1009A6586 /* AddressBookUI.framework */,
 				CED94F18151EACC60023A8EC /* Cycle Track */,
 				CED94F11151EACC60023A8EC /* Frameworks */,
 				CED94F0F151EACC60023A8EC /* Products */,

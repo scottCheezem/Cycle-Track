@@ -30,29 +30,42 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cycle Track/FirstViewController.m"
-         timestampString = "355438570.554259"
+         timestampString = "355518092.883602"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "324"
-         endingLineNumber = "324"
+         startingLineNumber = "300"
+         endingLineNumber = "300"
          landmarkName = "-addWayPoint:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cycle Track/FirstViewController.h"
+         timestampString = "355512865.912756"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "26"
+         endingLineNumber = "26"
+         landmarkName = "@interface FirstViewController"
+         landmarkType = "2">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Cycle Track/FirstViewController.m"
-         timestampString = "355437991.734621"
+         filePath = "Cycle Track/cycleTrackAnnotation.m"
+         timestampString = "355525974.782792"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
-         landmarkName = "-mapView:viewForAnnotation:"
+         startingLineNumber = "82"
+         endingLineNumber = "82"
+         landmarkName = "-locationLookup"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

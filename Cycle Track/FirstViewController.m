@@ -9,7 +9,7 @@
 /*WISH LIST
  X-get the stop start button working...(should it clear the routes on the map or should that be a seperate button?)
  -add button to follow point user location (also compas?)...some sort of system button?
- -show start and stop points in a path - add annotations - and figure 
+ X-show start and stop points in a path - add annotations - and figure 
  -turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
  -store a record : a copy of the array of points.
  -show a history table
@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
 
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    //[UIApplication sharedApplication].idleTimerDisabled = YES;
     
     [self initLabels];
         
@@ -52,6 +52,10 @@
     self.routeLine = [[MKPolyline alloc] init];
 
     shouldZoom = YES;
+    
+    
+    
+    
       
 }
 
@@ -97,15 +101,15 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
     
-    NSLog(@"updating user location..");
+    //NSLog(@"updating user location..");
     
-    //make this something seperate...
+    //make this something seperate ?...
     if(shouldZoom){
         //self.initalLocation = userLocation.location;
         MKCoordinateRegion region;
         region.center = cycleMap.userLocation.coordinate;
         
-        //compute the region with something less arbitrary..
+        //compute the region with something less arbitrary?..
         region.span = MKCoordinateSpanMake(0.0001, 0.0001);
         
         region = [mapView regionThatFits:region];
@@ -114,21 +118,15 @@
     }
 
     
-
-    //this should also be seperate...
-
-    if(tracking){// && userLocation.coordinate.latitude ){
+    
+    if(tracking){
         [self addWayPoint:userLocation];
-                
-    }/*else{
-        NSLog(@"you are at the north pole");
-        NSLog(@"%f, %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-    }*/
+    }
     
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-    NSLog(@"adding pin to map %@", [annotation class]);
+    //NSLog(@"adding pin to map %@", [annotation class]);
     
     
 
@@ -136,9 +134,12 @@
         return nil;
     }else if([annotation isKindOfClass:[cycleTrackAnnotation class]]){
         
-        NSLog(@"got an annotation");
+        
         cycleTrackAnnotation *ct = (cycleTrackAnnotation*)annotation;
         MKPinAnnotationView *pinAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+        pinAnnotation.canShowCallout = YES;
+        pinAnnotation.animatesDrop = YES;
+        
         if(ct.wayPoint.isStart){
             pinAnnotation.pinColor = MKPinAnnotationColorGreen;
         }else if(ct.wayPoint.isStop){
@@ -183,25 +184,17 @@
     
     MKOverlayView* overlayView = nil;
     
-
-//    NSLog(@"about to init with poly line..it has %d points", self.routeLine.pointCount);
     self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
     self.routeLineView.fillColor = [UIColor blueColor];
     self.routeLineView.strokeColor = [UIColor blueColor];
     self.routeLineView.lineWidth = 2;
 
-
     overlayView = self.routeLineView;
 
-    
     return overlayView;
 }
 
 -(void)computePattern{
-    //NSLog(@"processing %d points", self.currentPathWayPoints.count);
-
-    
-    
     
     CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D)*self.currentPathWayPoints.count);
     
@@ -216,10 +209,6 @@
     }
     
     self.routeLine = [MKPolyline polylineWithCoordinates:pointArr count:idx];
-//    NSLog(@"route line has %d points", self.routeLine.pointCount);
-
-    
-
     
     free(pointArr);
     
@@ -264,20 +253,11 @@
 
 -(void)startTracking{
     NSLog(@"trackig has started");
-    //locationController startUpdating.
+
     [[LocationController sharedLocationController].locationManager startUpdatingLocation];
     
-    
-    //register for locationUpdates;
+    //register for locationUpdates from the locationController;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate:) name:@"locationUpdate" object:nil];
-    
-    //init a new route.
-    //set the first way point to a start point
-    
-    //pass the first point to populate an annotation...
-    
-    //start pushing new way points on to the current path.
-    
     
 }
 
@@ -294,8 +274,7 @@
     if(self.currentPathWayPoints.count > 0){
         WayPoint *_wp = [self.currentPathWayPoints objectAtIndex:self.currentPathWayPoints.count-1];
         _wp.isStop = YES;
-        cycleTrackAnnotation *stop = [[cycleTrackAnnotation alloc]init];
-        stop.wayPoint = _wp;
+        cycleTrackAnnotation *stop = [[cycleTrackAnnotation alloc]initWithWayPoint:_wp];
         [self.cycleMap addAnnotation:stop];
     }
     
@@ -318,18 +297,15 @@
         
         NSLog(@"found a start point");
         
-        cycleTrackAnnotation *startAnnote = [[cycleTrackAnnotation alloc]init];
-        startAnnote.wayPoint = _wp;
+        cycleTrackAnnotation *startAnnote = [[cycleTrackAnnotation alloc]initWithWayPoint:_wp];
+        NSLog(@"%@",startAnnote.title);
+
         
         [self.cycleMap addAnnotation:startAnnote];
 
-        
     }
     
-    
     [self.currentPathWayPoints addObject:_wp];
-    
-    //NSLog(@"added a point : %d", [self.currentPathWayPoints count]);
     
     if(self.currentPathWayPoints.count >= 2){
         

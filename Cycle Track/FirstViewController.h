@@ -23,6 +23,7 @@
     LocationController *locationController;
     NSMutableArray *pathHistory;
     double speed;
+    
 
     
 }
@@ -45,8 +46,8 @@
 
 -(void)computePattern;
 
--(void)saveRoute;
--(void)loadRoute;//give extra params so we know what to load.
+//-(void)saveRoute;
+//-(void)loadRoute;//give extra params so we know what to load.
 
 -(void)startTracking;
 -(void)stopTracking;

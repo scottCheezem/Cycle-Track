@@ -7,19 +7,24 @@
 //
 
 #import <MapKit/MapKit.h>
+#import <AddressBook/AddressBook.h>
 #import "WayPoint.h"
 
 @interface cycleTrackAnnotation : NSObject<MKAnnotation>{
 
-    WayPoint *wp;
-    CLLocationCoordinate2D coordinate;
+    CLGeocoder *geoCoder;
+    NSString *addressString;
+
     
 }
 
 @property(nonatomic, strong)WayPoint *wayPoint;
-@property(nonatomic, readonly)CLLocationCoordinate2D coordinate;
+@property(nonatomic, readonly, copy)NSString *title;
+@property(nonatomic, readonly, copy)NSString *subtitle;
+
 
 -(CLLocationCoordinate2D)coordinate;
+-(cycleTrackAnnotation*)initWithWayPoint:(WayPoint*)wp;
 
 @end
 

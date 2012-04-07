@@ -15,14 +15,11 @@
 
 -(WayPoint*)initWayPointFromUserLocation:(CLLocationCoordinate2D)userPosition{
     
-    WayPoint *wp = [[WayPoint alloc]init ];
-    wp.timeStamp = [NSDate date];
-    //NSLog(@"new WP at %@", wp.timeStamp);
-    wp.lat = [NSNumber numberWithDouble:userPosition.latitude];
-    wp.lon = [NSNumber numberWithDouble:userPosition.longitude];
+    self.timeStamp = [NSDate date];
+    self.lat = [NSNumber numberWithDouble:userPosition.latitude];
+    self.lon = [NSNumber numberWithDouble:userPosition.longitude];
     
-    
-    return wp;
+    return self;
 }
 
 
