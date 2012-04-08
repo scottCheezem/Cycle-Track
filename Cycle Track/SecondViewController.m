@@ -27,14 +27,10 @@
     [SpeedLabel setFont:digitFontBig];
     [distLabel setFont:digitFont];
 
+    UINavigationController *nc = (UINavigationController*)[self.tabBarController.viewControllers objectAtIndex:0];
+    fc = [nc.viewControllers objectAtIndex:0];
     
 
-    //locationController = [LocationController sharedLocationController];
-    //[LocationController sharedLocationController].delegate = self;
-    
-    
-    
-    fc = [self.tabBarController.viewControllers objectAtIndex:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate:) name:@"locationUpdate" object:nil];
     
     
@@ -64,12 +60,15 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 - (IBAction)toggleTracking:(id)sender {
-    //FirstViewController *fc = [self.tabBarController.viewControllers objectAtIndex:0];
-
-    //NSLog(@"tracking is now %d", fc.tracking);
-    if([fc trackingToggled] == YES){
-        [[self tabBarController]setSelectedIndex:0];
-    }
+    
+    [fc trackingToggled];
+    
+    NSLog(@"foo");
+    
+    
+    [[self tabBarController]setSelectedIndex:0];
+    
+    
 }
 
 -(void)locationControllerDidUpdate:(NSNotification *)note{

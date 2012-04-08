@@ -226,7 +226,7 @@
 }
 
 -(BOOL)trackingToggled{
-    
+
     self.tracking = !self.tracking;
 
     if(tracking){
@@ -235,7 +235,7 @@
     }else{
         [self stopTracking];
     }
-    //NSLog(@"tracking is %d", tracking);
+    NSLog(@"tracking is %d", tracking);
     return tracking;
 }
 
@@ -315,27 +315,6 @@
     }
 }
 
-/*-(void)addWayPoint:(MKUserLocation *)userLocation{
-    
-    WayPoint *_wp = [[WayPoint alloc] initWayPointFromUserLocation:userLocation.coordinate];
-    
-    if(self.currentPathWayPoints.count == 0){
-        _wp.isStart = YES;
-        
-        cycleTrackAnnotation *startAnnote = [[cycleTrackAnnotation alloc]initWithWayPoint:_wp];
-        
-        [self.cycleMap addAnnotation:startAnnote];
-
-    }
-    
-    [self.currentPathWayPoints addObject:_wp];
-    
-    if(self.currentPathWayPoints.count >= 2){
-        
-        [self computePattern];
-    }
-
-}*/
 
 
 
