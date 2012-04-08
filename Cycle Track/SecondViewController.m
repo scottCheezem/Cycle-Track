@@ -63,9 +63,6 @@
     
     [fc trackingToggled];
     
-    NSLog(@"foo");
-    
-    
     [[self tabBarController]setSelectedIndex:0];
     
     

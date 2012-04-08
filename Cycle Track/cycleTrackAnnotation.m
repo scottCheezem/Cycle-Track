@@ -34,7 +34,7 @@
 -(NSString*)subtitle{
     
     
-    return [NSString stringWithFormat:@"near %@", addressString];;
+    return [NSString stringWithFormat:@"near %@", addressString];
     
 }
 

@@ -37,8 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    //[UIApplication sharedApplication].idleTimerDisabled = YES;
+    
+    self.navigationController.navigationBarHidden=YES;
     
     [self initLabels];
         
@@ -49,15 +49,10 @@
 
     locationController = [LocationController sharedLocationController];
     
-
     
     self.routeLine = [[MKPolyline alloc] init];
 
     shouldZoom = YES;
-    
-    
-    
-    
       
 }
 
@@ -145,6 +140,7 @@
             pinAnnotation.pinColor = MKPinAnnotationColorRed;
             
             UIButton *routeDetailsButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [routeDetailsButton addTarget:self action:@selector(showDetails:) forControlEvents:UIControlEventTouchUpInside];
             pinAnnotation.rightCalloutAccessoryView = routeDetailsButton;
             
         }else{
@@ -158,6 +154,16 @@
     return nil;
     
 }
+
+-(void)showDetails:(id)sender{
+    NSLog(@"the sender was %@", sender);
+    //rc = [[RouteDetailViewController alloc]init];
+    
+    [self performSegueWithIdentifier:@"showRouteDetails" sender:sender];
+    //rc.routeDetailDistanceLaebel.text = [NSString stringWithFormat:@"%f.3", fltDistanceTravelled];
+    //[self.navigationController pushViewController:uv animated:YES];
+}
+
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
 {
@@ -235,7 +241,7 @@
     }else{
         [self stopTracking];
     }
-    NSLog(@"tracking is %d", tracking);
+    //NSLog(@"tracking is %d", tracking);
     return tracking;
 }
 
@@ -294,7 +300,7 @@
 
 
 -(void)addWayPoint:(CLLocationCoordinate2D)userLocation{
-    NSLog(@"adding waypoint");
+    //NSLog(@"adding waypoint");
     WayPoint *_wp = [[WayPoint alloc] initWayPointFromUserLocation:userLocation];
     
     
