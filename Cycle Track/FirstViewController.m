@@ -10,7 +10,7 @@
  X-get the stop start button working...(should it clear the routes on the map or should that be a seperate button?)
  -add button to follow point user location (also compas?)...some sort of system button?
  X-show start and stop points in a path - add annotations - and figure 
- ?-turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
+ X-turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
  -store a record : a copy of the array of points.
  -show a history table
  X-show current speed in the second view and in the tracking label...
@@ -96,10 +96,9 @@
         disLabel.text = [NSString stringWithFormat:@"%.3f meters", fltDistanceTravelled];
     }
     
-    if(tracking){
-         
-     [self addWayPoint:newLocation.coordinate];
-     }
+    if((tracking && deltaMeters > 0) || (tracking && self.currentPathWayPoints.count == 0)){
+        [self addWayPoint:newLocation.coordinate];
+    }
 
     
 }
@@ -108,9 +107,7 @@
 
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
-    
-    NSLog(@"updating user location..");
-    
+        
     //make this something seperate ?...
     if(shouldZoom){
         //self.initalLocation = userLocation.location;
@@ -124,12 +121,6 @@
         [mapView setRegion:region animated:YES];
         shouldZoom = NO;
     }
-
-    
-    
-    /*if(tracking){
-        [self addWayPoint:userLocation];
-    }*/
     
 }
 
@@ -152,6 +143,10 @@
             pinAnnotation.pinColor = MKPinAnnotationColorGreen;
         }else if(ct.wayPoint.isStop){
             pinAnnotation.pinColor = MKPinAnnotationColorRed;
+            
+            UIButton *routeDetailsButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            pinAnnotation.rightCalloutAccessoryView = routeDetailsButton;
+            
         }else{
             pinAnnotation.pinColor = MKPinAnnotationColorPurple;
         }
@@ -299,6 +294,7 @@
 
 
 -(void)addWayPoint:(CLLocationCoordinate2D)userLocation{
+    NSLog(@"adding waypoint");
     WayPoint *_wp = [[WayPoint alloc] initWayPointFromUserLocation:userLocation];
     
     
