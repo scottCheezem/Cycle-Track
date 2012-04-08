@@ -8,6 +8,8 @@
 
 #import "WayPoint.h"
 
+
+
 @implementation WayPoint
 
 @synthesize timeStamp,lat,lon,isStop,isStart;

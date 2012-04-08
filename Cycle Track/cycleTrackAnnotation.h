@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 433 E Tompkins St. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
-#import <AddressBook/AddressBook.h>
+#import <MapKit/MKAnnotation.h>
 #import "WayPoint.h"
 
 @interface cycleTrackAnnotation : NSObject<MKAnnotation>{

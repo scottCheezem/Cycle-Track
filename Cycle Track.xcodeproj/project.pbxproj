@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE0DBD9C15237A1700C7FF71 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */; };
-		CE0EB10C152663F30053CE22 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EB10B152663F30053CE22 /* LocationController.m */; };
 		CE2C0DC51531EA720071B0F0 /* RouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C0DC41531EA720071B0F0 /* RouteDetailViewController.m */; };
 		CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */; };
 		CE6BF287152B6E6200DF4E26 /* cycleTrackAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF286152B6E6200DF4E26 /* cycleTrackAnnotation.m */; };
@@ -173,7 +172,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = "433 E Tompkins St";
+				ORGANIZATIONNAME = "Scott Cheezem";
 			};
 			buildConfigurationList = CED94F08151EACC60023A8EC /* Build configuration list for PBXProject "Cycle Track" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -219,7 +218,6 @@
 				CED94F23151EACC60023A8EC /* AppDelegate.m in Sources */,
 				CED94F29151EACC60023A8EC /* FirstViewController.m in Sources */,
 				CED94F30151EACC60023A8EC /* SecondViewController.m in Sources */,
-				CE0EB10C152663F30053CE22 /* LocationController.m in Sources */,
 				CE6BF287152B6E6200DF4E26 /* cycleTrackAnnotation.m in Sources */,
 				CE2C0DC51531EA720071B0F0 /* RouteDetailViewController.m in Sources */,
 			);

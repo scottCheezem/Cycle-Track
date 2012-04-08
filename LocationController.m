@@ -26,9 +26,34 @@
 }
 
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
+{
+    switch([error code])
+    {
+        case kCLErrorLocationUnknown: 
+            NSLog(@"The location manager was unable to obtain a location value right now");
+            break;
+        case kCLErrorDenied: 
+            NSLog(@"Access to the location service was denied by the user");
+            break;
+        case kCLErrorNetwork: 
+            NSLog(@"The network was unavailable or a network error occurred.");
+            break;
+        case kCLErrorHeadingFailure:
+            NSLog(@"The heading could not be determined.");
+            break;
+        default:
+            NSLog(@"location manager failed");
+            break;
+            
+    }
+}
+
+
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     //return the new and old locations in dictionary form, send out notifucation...I guess???
-    //NSLog(@"updatingin location singleton");
+    NSLog(@"updatingin location singleton");
     
     NSMutableDictionary *locationDict = [[NSMutableDictionary alloc] init];
     [locationDict setValue:newLocation forKey:@"newLocation"];

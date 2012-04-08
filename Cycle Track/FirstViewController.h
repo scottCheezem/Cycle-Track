@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/Mapkit.h>
-#import <CoreLocation/CoreLocation.h>
+//#import <CoreLocation/CoreLocation.h>
 #import "WayPoint.h"
-#import "LocationController.h"
+//#import "LocationController.h"
 #import "cycleTrackAnnotation.h"
 #import "RouteDetailViewController.h"
 
 
-@interface FirstViewController : UIViewController<MKMapViewDelegate>{//, CLLocationManagerDelegate>{
+@interface FirstViewController : UIViewController<MKMapViewDelegate>{
     BOOL shouldZoom;
     float fltDistanceTravelled;
-    LocationController *locationController;
+    //CLLocationManager *locationManager;
     RouteDetailViewController *rc;
     NSMutableArray *pathHistory;
     double speed;

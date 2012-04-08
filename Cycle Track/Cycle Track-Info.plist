@@ -40,9 +40,5 @@
 	<array>
 		<string>digital-7.ttf</string>
 	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 </dict>
 </plist>

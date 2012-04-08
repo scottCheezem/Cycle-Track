@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LocationController.h"
+//#import "LocationController.h"
 #import "FirstViewController.h"
 
 @interface SecondViewController : UIViewController{
-    LocationController *locationController;
+    
     FirstViewController *fc;
     float fltDistance;
     

@@ -44,21 +44,30 @@
         
     self.currentPathWayPoints = [[NSMutableArray alloc] init ];
 
-    cycleMap.delegate = self;
-    
+    //self.cycleMap.delegate = self;
 
-    locationController = [LocationController sharedLocationController];
     
+    
+    //locationManager = [LocationController sharedLocationController].locationManager;
+
+    //locationController = [LocationController sharedLocationController];
+    //locationController.locationManager.delegate = self;
     
     self.routeLine = [[MKPolyline alloc] init];
 
     shouldZoom = YES;
       
 }
-
-
+-(void)viewWillDisappear:(BOOL)animated{
+    self.cycleMap.delegate = nil;
+}
+-(void)viewWillUnload{
+    NSLog(@"view unloading!");
+    
+}
 - (void)viewDidUnload
 {
+    
     [self setCycleMap:nil];
     [self setTrackingLabel:nil];
     [self setDisLabel:nil];
@@ -99,10 +108,12 @@
 }
 
 
-
+/*
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
-        
+       
+    NSLog(@"updating in map");
+    
     //make this something seperate ?...
     if(shouldZoom){
         //self.initalLocation = userLocation.location;
@@ -118,6 +129,7 @@
     }
     
 }
+*/
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     //NSLog(@"adding pin to map %@", [annotation class]);
@@ -165,28 +177,6 @@
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
-{
-    switch([error code])
-    {
-        case kCLErrorLocationUnknown: 
-            NSLog(@"The location manager was unable to obtain a location value right now");
-            break;
-        case kCLErrorDenied: 
-            NSLog(@"Access to the location service was denied by the user");
-            break;
-        case kCLErrorNetwork: 
-            NSLog(@"The network was unavailable or a network error occurred.");
-            break;
-        case kCLErrorHeadingFailure:
-             NSLog(@"The heading could not be determined.");
-            break;
-        default:
-            NSLog(@"location manager failed");
-            break;
-            
-    }
-}
 
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay {
@@ -262,9 +252,14 @@
 
 -(void)startTracking{
     NSLog(@"trackig has started");
+    self.cycleMap.showsUserLocation = YES;
+    NSLog(@"tracking mode: %@", self.cycleMap.userTrackingMode);
 
-    [[LocationController sharedLocationController].locationManager startUpdatingLocation];
-    //[[LocationController sharedLocationController].locationManager startMonitoringSignificantLocationChanges];
+    
+    //[[LocationController sharedLocationController].locationManager startUpdatingLocation];
+    //[locationManager startUpdatingLocation];
+    
+    
     
     //register for locationUpdates from the locationController;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate:) name:@"locationUpdate" object:nil];
@@ -276,9 +271,14 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];    
     //locationCOntroller stopupdating.
     
-    [[LocationController sharedLocationController].locationManager stopUpdatingLocation];
-    //[[LocationController sharedLocationController].locationManager startMonitoringSignificantLocationChanges];
+    //[[LocationController sharedLocationController].locationManager stopUpdatingLocation];
+    //[locationManager stopUpdatingLocation];
+
+    self.cycleMap.showsUserLocation = NO;
+    NSLog(@"tracking mode: %@", self.cycleMap.userTrackingMode);
+
     
+
     //deregister for updates.
     
     //grab the last point in the current path and set it to a stop point.
@@ -293,7 +293,7 @@
     [pathHistory addObject:lastPath];
     [self.currentPathWayPoints removeAllObjects];
     
-    
+        self.cycleMap = nil;
     NSLog(@"tracking has stopped");
     
 }
