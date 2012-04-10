@@ -8,7 +8,7 @@
 
 /*WISH LIST
  X-get the stop start button working...(should it clear the routes on the map or should that be a seperate button?)
- -add button to follow point user location (also compas?)...some sort of system button?
+ X-add button to follow point user location (also compas?)...some sort of system button?
  X-show start and stop points in a path - add annotations - and figure 
  X-turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
  -store a record : a copy of the array of points.
@@ -38,33 +38,25 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden=YES;
+    //self.navigationController.navigationBarHidden=YES;
     
     [self initLabels];
         
     self.currentPathWayPoints = [[NSMutableArray alloc] init ];
 
-    //self.cycleMap.delegate = self;
-
-    
-    
-    //locationManager = [LocationController sharedLocationController].locationManager;
-
-    //locationController = [LocationController sharedLocationController];
-    //locationController.locationManager.delegate = self;
+    self.cycleMap.delegate = self;
     
     self.routeLine = [[MKPolyline alloc] init];
 
     shouldZoom = YES;
+    
+    MKUserTrackingBarButtonItem *trackUserButton = [[MKUserTrackingBarButtonItem alloc]initWithMapView:self.cycleMap];
+    self.navigationItem.rightBarButtonItem = trackUserButton;
+    
       
 }
--(void)viewWillDisappear:(BOOL)animated{
-    self.cycleMap.delegate = nil;
-}
--(void)viewWillUnload{
-    NSLog(@"view unloading!");
-    
-}
+
+
 - (void)viewDidUnload
 {
     
@@ -108,7 +100,7 @@
 }
 
 
-/*
+
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{
        
@@ -129,7 +121,7 @@
     }
     
 }
-*/
+
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     //NSLog(@"adding pin to map %@", [annotation class]);
@@ -169,15 +161,26 @@
 
 -(void)showDetails:(id)sender{
     NSLog(@"the sender was %@", sender);
-    //rc = [[RouteDetailViewController alloc]init];
+    //rc = [[RouteDetailViewController alloc]initWithNibName:@"" bundle:nil];
     
-    [self performSegueWithIdentifier:@"showRouteDetails" sender:sender];
+    [self performSegueWithIdentifier:@"RouteDetailSegue" sender:sender];
     //rc.routeDetailDistanceLaebel.text = [NSString stringWithFormat:@"%f.3", fltDistanceTravelled];
-    //[self.navigationController pushViewController:uv animated:YES];
+    //[self.navigationController pushViewController:rc animated:YES];
 }
 
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    NSLog(@"going to segue");
+    
+    
+    if([[segue identifier] isEqualToString:@"RouteDetailSegue"]){
+        NSLog(@"hey were going to the right place");
+    }
+    
+    
+    
+}
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay {
     
@@ -245,21 +248,17 @@
     
     [trackingLabel setFont:digiFont];
     [disLabel setFont:digiFont];
+    self.trackingLabel.text = @"";
+    self.disLabel.text = @"";
 
     
 }
 
 
 -(void)startTracking{
-    NSLog(@"trackig has started");
-    self.cycleMap.showsUserLocation = YES;
-    NSLog(@"tracking mode: %@", self.cycleMap.userTrackingMode);
 
-    
-    //[[LocationController sharedLocationController].locationManager startUpdatingLocation];
-    //[locationManager startUpdatingLocation];
-    
-    
+    [[LocationController sharedLocationController].locationManager startUpdatingLocation];
+
     
     //register for locationUpdates from the locationController;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationControllerDidUpdate:) name:@"locationUpdate" object:nil];
@@ -268,18 +267,13 @@
 
 -(void)stopTracking{
     
+    
+    [[LocationController sharedLocationController].locationManager stopUpdatingLocation];
+    
+
+    
     [[NSNotificationCenter defaultCenter]removeObserver:self];    
-    //locationCOntroller stopupdating.
     
-    //[[LocationController sharedLocationController].locationManager stopUpdatingLocation];
-    //[locationManager stopUpdatingLocation];
-
-    self.cycleMap.showsUserLocation = NO;
-    NSLog(@"tracking mode: %@", self.cycleMap.userTrackingMode);
-
-    
-
-    //deregister for updates.
     
     //grab the last point in the current path and set it to a stop point.
     if(self.currentPathWayPoints.count > 0){
