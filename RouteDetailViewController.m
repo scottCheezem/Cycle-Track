@@ -13,7 +13,6 @@
 @end
 
 @implementation RouteDetailViewController
-@synthesize view;
 @synthesize routeDetailTimeLabel;
 @synthesize routeDetailDistanceLaebel;
 @synthesize routeDetailAveSpeedLabel;

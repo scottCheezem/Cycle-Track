@@ -8,7 +8,7 @@
 
 /*WISH LIST
  X-get the stop start button working...(should it clear the routes on the map or should that be a seperate button?)
- -add button to follow point user location (also compas?)...some sort of system button?
+ X-add button to follow point user location (also compas?)...some sort of system button?
  X-show start and stop points in a path - add annotations - and figure 
  X-turn down the sensetivity of the tracking a little...or make it dynamic based on distance from last point?
  -store a record : a copy of the array of points.
@@ -161,15 +161,26 @@
 
 -(void)showDetails:(id)sender{
     NSLog(@"the sender was %@", sender);
-    //rc = [[RouteDetailViewController alloc]init];
+    //rc = [[RouteDetailViewController alloc]initWithNibName:@"" bundle:nil];
     
-    [self performSegueWithIdentifier:@"showRouteDetails" sender:sender];
+    [self performSegueWithIdentifier:@"RouteDetailSegue" sender:sender];
     //rc.routeDetailDistanceLaebel.text = [NSString stringWithFormat:@"%f.3", fltDistanceTravelled];
-    //[self.navigationController pushViewController:uv animated:YES];
+    //[self.navigationController pushViewController:rc animated:YES];
 }
 
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    NSLog(@"going to segue");
+    
+    
+    if([[segue identifier] isEqualToString:@"RouteDetailSegue"]){
+        NSLog(@"hey were going to the right place");
+    }
+    
+    
+    
+}
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay {
     
