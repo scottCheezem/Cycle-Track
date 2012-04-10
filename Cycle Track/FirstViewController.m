@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden=YES;
+    //self.navigationController.navigationBarHidden=YES;
     
     [self initLabels];
         
@@ -49,6 +49,10 @@
     self.routeLine = [[MKPolyline alloc] init];
 
     shouldZoom = YES;
+    
+    MKUserTrackingBarButtonItem *trackUserButton = [[MKUserTrackingBarButtonItem alloc]initWithMapView:self.cycleMap];
+    self.navigationItem.rightBarButtonItem = trackUserButton;
+    
       
 }
 
@@ -233,6 +237,8 @@
     
     [trackingLabel setFont:digiFont];
     [disLabel setFont:digiFont];
+    self.trackingLabel.text = @"";
+    self.disLabel.text = @"";
 
     
 }
