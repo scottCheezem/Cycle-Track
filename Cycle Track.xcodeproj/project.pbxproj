@@ -10,6 +10,7 @@
 		CE0DBD9C15237A1700C7FF71 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE8629BD1522A10E00F5FBB7 /* digital-7.ttf */; };
 		CE2C0DC51531EA720071B0F0 /* RouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2C0DC41531EA720071B0F0 /* RouteDetailViewController.m */; };
 		CE5D8B30151EC56F00E09AEB /* WayPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D8B2D151EB9EC00E09AEB /* WayPoint.m */; };
+		CE5E131A1534A70E009C0E04 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0EB10B152663F30053CE22 /* LocationController.m */; };
 		CE6BF287152B6E6200DF4E26 /* cycleTrackAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF286152B6E6200DF4E26 /* cycleTrackAnnotation.m */; };
 		CED94F13151EACC60023A8EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F12151EACC60023A8EC /* UIKit.framework */; };
 		CED94F15151EACC60023A8EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED94F14151EACC60023A8EC /* Foundation.framework */; };
@@ -220,6 +221,7 @@
 				CED94F30151EACC60023A8EC /* SecondViewController.m in Sources */,
 				CE6BF287152B6E6200DF4E26 /* cycleTrackAnnotation.m in Sources */,
 				CE2C0DC51531EA720071B0F0 /* RouteDetailViewController.m in Sources */,
+				CE5E131A1534A70E009C0E04 /* LocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
