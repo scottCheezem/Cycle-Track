@@ -183,16 +183,24 @@
 }
 
 -(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay {
+    NSLog(@"routeLine has %d points", self.routeLine.pointCount);
     
+
     MKOverlayView* overlayView = nil;
     
     self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
+    self.routeLineView.tag = self.routeLine.pointCount-1;
+    
     self.routeLineView.fillColor = [UIColor blueColor];
     self.routeLineView.strokeColor = [UIColor blueColor];
     self.routeLineView.lineWidth = 2;
 
     overlayView = self.routeLineView;
-
+    NSLog(@"mapview has %d routes", self.cycleMap.overlays.count);
+    for(int i = 0 ; i<self.cycleMap.overlays.count; i++){
+        NSLog(@"%@", [self.cycleMap.overlays objectAtIndex:i]);
+    }
+    
     return overlayView;
 }
 
@@ -210,13 +218,16 @@
 
     }
     
+    
+    
     self.routeLine = [MKPolyline polylineWithCoordinates:pointArr count:idx];
     
     free(pointArr);
     
     //make this a refresh routeline type thing...
+    //this will cuase problems later one when/if we want to show multiple routes at once...
     if(self.routeLine != nil){
-        //[self.cycleMap removeOverlay:self.routeLine];
+        [self.cycleMap removeOverlay:[self.cycleMap.overlays objectAtIndex:0]];
         [self.cycleMap addOverlay:self.routeLine];        
     }
     
