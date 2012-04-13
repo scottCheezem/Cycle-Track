@@ -94,6 +94,8 @@
     
     if((tracking && deltaMeters > 0) || (tracking && self.currentPathWayPoints.count == 0)){
         [self addWayPoint:newLocation.coordinate];
+    }else{
+        NSLog(@"not updating deltameters:%f, points counts: %d ", deltaMeters, self.currentPathWayPoints.count);
     }
 
     
@@ -196,7 +198,7 @@
     self.routeLineView.lineWidth = 2;
 
     overlayView = self.routeLineView;
-    NSLog(@"mapview has %d routes", self.cycleMap.overlays.count);
+    
     for(int i = 0 ; i<self.cycleMap.overlays.count; i++){
         NSLog(@"%@", [self.cycleMap.overlays objectAtIndex:i]);
     }
@@ -226,8 +228,10 @@
     
     //make this a refresh routeline type thing...
     //this will cuase problems later one when/if we want to show multiple routes at once...
-    if(self.routeLine != nil){
-        [self.cycleMap addOverlay:self.routeLine];        
+    [self.cycleMap addOverlay:self.routeLine];        
+    //if(self.routeLine != nil){
+    if(self.cycleMap.overlays.count >1){
+        NSLog(@"mapview has %d routes", self.cycleMap.overlays.count);
         [self.cycleMap removeOverlay:[self.cycleMap.overlays objectAtIndex:0]];
     }
     
@@ -241,11 +245,13 @@
 
     if(tracking){
         [self startTracking];
+        
 
     }else{
         [self stopTracking];
     }
-    //NSLog(@"tracking is %d", tracking);
+    NSLog(@"tracking is %d", tracking);
+    
     return tracking;
 }
 
@@ -269,7 +275,7 @@
 -(void)startTracking{
 
     [[LocationController sharedLocationController].locationManager startUpdatingLocation];
-    fltDistanceTravelled = 0;
+    //fltDistanceTravelled = 0;
 
     
     //register for locationUpdates from the locationController;
@@ -299,7 +305,7 @@
     [pathHistory addObject:lastPath];
     [self.currentPathWayPoints removeAllObjects];
     
-        self.cycleMap = nil;
+        
     NSLog(@"tracking has stopped");
     
 }
@@ -327,6 +333,7 @@
     }
 }
 
+/*
 -(NSString*)getTimeForRoute:(NSArray*)route{
 
     
@@ -339,7 +346,7 @@
 }
 -(NSString*)getAveSpeedForRoute:(NSArray*)route{
     
-}
+}*/
 
 
 @end
