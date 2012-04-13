@@ -227,8 +227,8 @@
     //make this a refresh routeline type thing...
     //this will cuase problems later one when/if we want to show multiple routes at once...
     if(self.routeLine != nil){
-        [self.cycleMap removeOverlay:[self.cycleMap.overlays objectAtIndex:0]];
         [self.cycleMap addOverlay:self.routeLine];        
+        [self.cycleMap removeOverlay:[self.cycleMap.overlays objectAtIndex:0]];
     }
     
     
@@ -269,6 +269,7 @@
 -(void)startTracking{
 
     [[LocationController sharedLocationController].locationManager startUpdatingLocation];
+    fltDistanceTravelled = 0;
 
     
     //register for locationUpdates from the locationController;
@@ -326,7 +327,19 @@
     }
 }
 
+-(NSString*)getTimeForRoute:(NSArray*)route{
 
+    
+}
+-(NSString*)getMaxSpeedForRoute:(NSArray*)route{
+    
+}
+-(NSString*)getMinSpeedForRoute:(NSArray*)route{
+    
+}
+-(NSString*)getAveSpeedForRoute:(NSArray*)route{
+    
+}
 
 
 @end
