@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "WayPoint.h"
 
-@interface RouteDetailViewController : UIViewController;
+//@interface RouteDetailViewController : UIViewController
+@interface RouteDetailViewController : UITableViewController
 
+@property (weak, nonatomic) NSArray* routePoints;
 
-@property (weak, nonatomic) IBOutlet UILabel *routeDetailTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *routeDetailDistanceLaebel;
-@property (weak, nonatomic) IBOutlet UILabel *routeDetailAveSpeedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *routeDetailMaxSpeedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *routeDetailMinSpeedLabel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *distanceCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *timeCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *maxSpeedCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *minSpeedCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *aveSpeedCell;
+
 
 
 

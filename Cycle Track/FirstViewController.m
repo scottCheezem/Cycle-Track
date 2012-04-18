@@ -178,6 +178,8 @@
     
     if([[segue identifier] isEqualToString:@"RouteDetailSegue"]){
         NSLog(@"hey were going to the right place");
+        RouteDetailViewController* rc = [segue destinationViewController];
+        rc.routePoints = self.currentPathWayPoints;
     }
     
     
@@ -206,12 +208,13 @@
     return overlayView;
 }
 
--(void)computePattern{
+
+-(void)computePattern:(NSArray*)path{
     
-    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D)*self.currentPathWayPoints.count);
+    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D)*path.count);
     
     int idx = 0;
-    for(WayPoint *wp in self.currentPathWayPoints){
+    for(WayPoint *wp in path){
         
         CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([wp.lat doubleValue], [wp.lon doubleValue]);
 
@@ -329,7 +332,7 @@
     
     if(self.currentPathWayPoints.count >= 2){
         
-        [self computePattern];
+        [self computePattern:self.currentPathWayPoints];
     }
 }
 

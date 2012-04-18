@@ -38,7 +38,7 @@
 
 -(void)initLabels;
 
--(void)computePattern;
+-(void)computePattern:(NSArray*)path;
 
 //-(void)saveRoute;
 //-(void)loadRoute;//give extra params so we know what to load.
